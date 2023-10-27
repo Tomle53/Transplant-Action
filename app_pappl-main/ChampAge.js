@@ -20,6 +20,7 @@ const ChampAge = ({bonAge, age, changeAge, changeAgeOk}) =>{
         onValueChange={(value) => {changeAge(value); setAgeRempli(value)}}
         onSlidingComplete={(value) => changeAgeOk(value==bonAge)}
         step = {1}
+        
         minimumValue = {20}
         maximumValue = {80}
         style={{width: Dimensions.get('window').width/4-10, alignSelf: 'center',}}
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
         padding: 10,
         width: Dimensions.get('window').width/4-10,
         alignSelf: 'center',
+        
       }, 
 });
 

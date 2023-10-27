@@ -21,10 +21,14 @@ const App = () => {
           options={{ title: "Transplant'action" }}
         />
         <Stack.Screen name="Aide" component={Aide} />
-        <Stack.Screen name="ParametragePartie" component={ParametragePartie}/>
-        <Stack.Screen name="EcranDeJeu1" component={EcranDeJeu1}/>
-        <Stack.Screen name='EcranDeJeu2' component={EcranDeJeu2}/>
-        <Stack.Screen name='EcranDeFinDePartie' component={EcranDeFinDePartie}/>
+        <Stack.Screen name="ParametragePartie" component={ParametragePartie}
+        options={{ title: "Paramètres" }}/>
+        <Stack.Screen name="EcranDeJeu1" component={EcranDeJeu1}
+        options={{ title: "Receveur" }}/>
+        <Stack.Screen name='EcranDeJeu2' component={EcranDeJeu2}
+        options={{ title: "Potentiels donneurs" }}/>
+        <Stack.Screen name='EcranDeFinDePartie' component={EcranDeFinDePartie}
+        options={{ title: "Fin de la partie" }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -16,7 +16,7 @@ const nomDonneurCorrect = 'Dr Maya Curado';
 const ageDonneurCorrect = 33;
 const sequenceDonneurCorrect = "M Y H K L"
 const imageMaya = require('./pictures/Maya.png')
-const donneursPotentiels = [['Léon Patounec', 22, 'M',40,require('./pictures/Leon.png'),"M Y W I T"],['Dr Emilia Caubert',65, 'F',60,require('./pictures/Emilia.png'), "M G R K P"],['Tomas Parker',61, 'M',60,require('./pictures/Tomas.png'),"M Y H A H"],['Béatrice Tapalinga',23, 'F',0,require('./pictures/Beatrice.png'), "_"],['Vlad Koscov',37,'M',0,require('./pictures/Vlad.png'),"_"]];
+const donneursPotentiels = [['Léon Patounec', 22, 'M',40,require('./pictures/Leon.png'),"M Y W I T"],['Dr Emilia Caubert',65, 'F',40,require('./pictures/Emilia.png'), "M G R K P"],['Tomas Parker',61, 'M',60,require('./pictures/Tomas.png'),"M Y H A H"],['Béatrice Tapalinga',23, 'F',0,require('./pictures/Beatrice.png'), "_"],['Vlad Koscov',37,'M',0,require('./pictures/Vlad.png'),"_"]];
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#148ce8',
     paddingHorizontal: 30,
-    paddingVertical: 15,
+    paddingVertical: 14,
     margin: 30,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

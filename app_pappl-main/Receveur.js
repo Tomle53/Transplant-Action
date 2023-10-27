@@ -13,7 +13,8 @@ const AgeDoc = 47;
 const seqProteine = 'MYHKL'
 
 const Receveur = () => {
-    const [ageOk,setAgeOk] = useState(false)
+    const [ageOk,setAgeOk] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(true);
     const [age, setAge] = useState(20);
     const [genre, setGenre] = useState();
     const navigation = useNavigation();
@@ -22,7 +23,9 @@ const Receveur = () => {
     const changeAge = (value) => {if(isNaN(parseInt(value)&&isNaN(value))){setAge(20)}
     else{if(parseInt(value)<20){setAge(20)}
   else{if(parseInt(value)>80){setAge(80)}
-  else{setAge(value)}  
+  else{setAge(value)} 
+  const changeDisable= (bool) =>{if(ageOk && proteineOk && genre){setButtonDisabled(!bool);}} 
+
 }
   }
   }
@@ -37,10 +40,19 @@ const Receveur = () => {
   <ChampAge style={styles.barreTexte} bonAge={AgeDoc} age = {age} changeAge={changeAge} changeAgeOk = {changeAgeOk}/>
   <Text style={styles.instruction}> Quelle est la séquence protéinique du docteur Saha ? </Text>
   <TextInput  onChangeText={value => setProteineOk(value===seqProteine)} style = {styles.input}/>
-  <>{ageOk&&proteineOk&&genre&&<Pressable  style={styles.button} title = "Continuer" onPress={() =>
-navigation.navigate('EcranDeJeu2')
-}> <Text style={styles.buttonText}> Continuer </Text> </Pressable> }</>
-<Text>{ageOk}</Text>
+
+  <Text>
+  <Pressable  
+  style={buttonDisabled ? styles.button : styles.buttonpressed}
+  
+  onPress={() => { if (ageOk && proteineOk && genre) {navigation.navigate('EcranDeJeu2');}
+}}
+  disabled={!ageOk || !proteineOk || !genre}
+
+  >
+  <Text style={styles.buttonText}> Continuer </Text> </Pressable>   </Text>
+   
+
 </View>
 }
 
@@ -60,7 +72,7 @@ const styles = StyleSheet.create({
   barreTexte: {
     textAlign: 'center',
     height: 100,
-    borderColor: 'gray',
+    borderColor: 'grey',
     borderWidth: 1,
     width: Dimensions.get('window').width-1000,
     alignSelf: 'center',
@@ -83,9 +95,9 @@ const styles = StyleSheet.create({
   },
   button: {
     textAlign: 'center',
-    backgroundColor: '#148ce8',
-    paddingHorizontal: Dimensions.get('window').width / 40,
-    paddingVertical: 15,
+    backgroundColor: '#accae0',
+    paddingHorizontal: (Dimensions.get('window').width / 40)-1,
+    paddingVertical: 14,
     margin: 30,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -95,7 +107,7 @@ const styles = StyleSheet.create({
 
   buttonpressed: {
     textAlign: 'center',
-    backgroundColor: '#accae0',
+    backgroundColor: '#148ce8',
     paddingHorizontal: Dimensions.get('window').width / 40,
     paddingVertical: 15,
     margin: 30,
@@ -104,6 +116,8 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
+  
+
   image: {
     alignSelf: 'center',
     flex: 1,

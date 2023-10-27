@@ -27,7 +27,7 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
             <>{ageOk&&genre&&<Text>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>}</>
             <>{ageOk&&genre&&<TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {styles.input}/>}</> 
             <>{mismatchOk&&<Text>Compatibilité : {compatibilite}%</Text>}</>
-            <>{resolu&&<Pressable style={styles.button} title={correct ? "gagner": "perdre"}onPress={() =>
+            <>{resolu&&<Pressable style={styles.buttonpressed} title={correct ? "gagner": "perdre"}onPress={() =>
           navigation.navigate('EcranDeFinDePartie',{
             gagne:  correct
           })}> <Text style={styles.buttonText}> Choisir </Text> </Pressable>}</>
@@ -75,9 +75,9 @@ const styles = StyleSheet.create({
     },
     button: {
       textAlign: 'center',
-      backgroundColor: '#148ce8',
-      paddingHorizontal: Dimensions.get('window').width / 60,
-      paddingVertical: 10,
+      backgroundColor: '#accae0',
+      paddingHorizontal: (Dimensions.get('window').width / 60)-1,
+      paddingVertical: 9,
       margin: 25,
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     buttonpressed: {
       textAlign: 'center',
-      backgroundColor: '#accae0',
+      backgroundColor: '#148ce8',
       paddingHorizontal: Dimensions.get('window').width / 60,
       paddingVertical: 10,
       margin: 25,
