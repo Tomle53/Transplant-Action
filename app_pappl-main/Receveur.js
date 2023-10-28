@@ -4,7 +4,7 @@
  */
 import { Image, Text, TextInput, Button, StyleSheet, Pressable, Dimensions } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import React from 'react';
 import { View } from "react-native";
 import ChampAge from './ChampAge'
@@ -13,47 +13,56 @@ const AgeDoc = 47;
 const seqProteine = 'MYHKL'
 
 const Receveur = () => {
-    const [ageOk,setAgeOk] = useState(false);
-    const [buttonDisabled, setButtonDisabled] = useState(true);
-    const [age, setAge] = useState(20);
-    const [genre, setGenre] = useState();
-    const navigation = useNavigation();
-    let [proteineOk, setProteineOk] = useState(false)
-    const changeAgeOk = (bool) => setAgeOk(bool);
-    const changeAge = (value) => {if(isNaN(parseInt(value)&&isNaN(value))){setAge(20)}
-    else{if(parseInt(value)<20){setAge(20)}
-  else{if(parseInt(value)>80){setAge(80)}
-  else{setAge(value)} 
-  const changeDisable= (bool) =>{if(ageOk && proteineOk && genre){setButtonDisabled(!bool);}} 
+  const [ageOk, setAgeOk] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [age, setAge] = useState(20);
+  const [genre, setGenre] = useState();
+  const navigation = useNavigation();
+  let [proteineOk, setProteineOk] = useState(false)
+  const changeAgeOk = (bool) => setAgeOk(bool);
+  const changeAge = (value) => {
+    if (isNaN(parseInt(value) && isNaN(value))) { setAge(20) }
+    else {
+      if (parseInt(value) < 20) { setAge(20) }
+      else {
+        if (parseInt(value) > 80) { setAge(80) }
+        else { setAge(value) }}}}
+  const changeDisable = () => {
+    if (ageOk && proteineOk && genre) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }
+  useEffect(() => {
+    changeDisable();
+  }, [ageOk, proteineOk, genre]);
 
-}
-  }
-  }
-    
   return <View style={styles.container}>
-  <Text style={styles.instruction}> Quelle est le sexe du docteur Saha ?</Text>
-  <Text>
-    <Pressable style={[genre ? styles.button : styles.buttonpressed]} title="Homme" onPress={() => setGenre(false)}> <Text style={styles.buttonText}> Homme </Text> </Pressable>
-    <Pressable style={[genre ? styles.buttonpressed : styles.button]} title="Femme" onPress={() => setGenre(true)}> <Text style={styles.buttonText}> Femme </Text> </Pressable>
-  </Text>
-  <Text style={styles.instruction}> Quelle est l'âge du docteur Saha ? </Text>
-  <ChampAge style={styles.barreTexte} bonAge={AgeDoc} age = {age} changeAge={changeAge} changeAgeOk = {changeAgeOk}/>
-  <Text style={styles.instruction}> Quelle est la séquence protéinique du docteur Saha ? </Text>
-  <TextInput  onChangeText={value => setProteineOk(value===seqProteine)} style = {styles.input}/>
+    <Text style={styles.instruction}> Quelle est le sexe du docteur Saha ?</Text>
+    <Text>
+      <Pressable style={[genre ? styles.button : styles.buttonpressed]} title="Homme" onPress={() => setGenre(false)}> <Text style={styles.buttonText}> Homme </Text> </Pressable>
+      <Pressable style={[genre ? styles.buttonpressed : styles.button]} title="Femme" onPress={() => setGenre(true)}> <Text style={styles.buttonText}> Femme </Text> </Pressable>
+    </Text>
+    <Text style={styles.instruction}> Quelle est l'âge du docteur Saha ? </Text>
+    <ChampAge style={styles.barreTexte} bonAge={AgeDoc} age={age} changeAge={changeAge} changeAgeOk={changeAgeOk} />
+    <Text style={styles.instruction}> Quelle est la séquence protéinique du docteur Saha ? </Text>
+    <TextInput onChangeText={value => setProteineOk(value === seqProteine)} style={styles.input} />
 
-  <Text>
-  <Pressable  
-  style={buttonDisabled ? styles.button : styles.buttonpressed}
-  
-  onPress={() => { if (ageOk && proteineOk && genre) {navigation.navigate('EcranDeJeu2');}
-}}
-  disabled={!ageOk || !proteineOk || !genre}
+    <Text>
+      <Pressable
+        style={buttonDisabled ? styles.button : styles.buttonpressed}
 
-  >
-  <Text style={styles.buttonText}> Continuer </Text> </Pressable>   </Text>
-   
+        onPress={() => {
+          if (ageOk && proteineOk && genre) { navigation.navigate('EcranDeJeu2'); }
+        }}
+        disabled={!ageOk || !proteineOk || !genre}
 
-</View>
+      >
+        <Text style={styles.buttonText}> Continuer </Text> </Pressable>   </Text>
+
+
+  </View>
 }
 
 const styles = StyleSheet.create({
