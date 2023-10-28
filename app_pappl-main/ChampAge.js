@@ -24,6 +24,8 @@ const ChampAge = ({bonAge, age, changeAge, changeAgeOk}) =>{
         minimumValue = {20}
         maximumValue = {80}
         style={{width: Dimensions.get('window').width/4-10, alignSelf: 'center',}}
+        thumbTintColor='#148ce8'
+        minimumTrackTintColor='#148ce8'
     />
 </View>
 }
@@ -37,7 +39,8 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width/4-10,
         alignSelf: 'center',
         
-      }, 
+  
+      },      
 });
 
 export default ChampAge;
