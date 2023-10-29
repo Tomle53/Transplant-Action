@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React, { Component, useState } from 'react';
-import { View ,Text, TextInput, Button, Pressable, StyleSheet, } from 'react-native';
+import React, { Component, useState, } from 'react';
+import { View ,Text, TextInput, Button, Pressable, StyleSheet, Dimensions } from 'react-native';
 /**
  * 
  * @param {} param0 navigation correspond à la pile d'écrans rencontrés, permettant de se déplacer d'un écran à un autre.
@@ -8,6 +8,7 @@ import { View ,Text, TextInput, Button, Pressable, StyleSheet, } from 'react-nat
  */
 const ParametragePartie = ({ navigation }) => {
     const [number, onChangeNumber] = React.useState(30);
+    const [difficulte,setDifficulte]= useState(true);
     return(
         <View style={styles.container}>
         <Text style={styles.title} > Paramétrage de la partie </Text>
@@ -20,8 +21,25 @@ const ParametragePartie = ({ navigation }) => {
           />
         <Text> minutes </Text>
         </Text>
+        
+        <Text> </Text>
+        <Text style={styles.parametre}> Difficulté :
+        
+      <Pressable style={[difficulte ? styles.button : styles.buttonpressed]} title="Facile" onPress={() => setDifficulte(false)}> <Text style={styles.buttonText}> Facile </Text> </Pressable>
+      <Pressable style={[difficulte ? styles.buttonpressed : styles.button]} title="Normal" onPress={() => setDifficulte(true)}> <Text style={styles.buttonText}> Normal </Text> </Pressable>
+     </Text>
+     <Pressable
+              style={styles.buttonpressed}
+              title="Personnaliser les personnages"
+              onPress={() =>
+                navigation.navigate('Personnaliser')
+              }
+            >
+              <Text style={styles.buttonText}> Personnaliser des personnages </Text>
+          </Pressable>
+
           <Pressable
-              style={styles.button}
+              style={styles.buttonpressed}
               title="Lancer la partie"
               onPress={() =>
                 navigation.navigate('EcranDeJeu1', {timer: number} )
@@ -71,9 +89,9 @@ const styles = StyleSheet.create({
   },
   button: {
     textAlign: 'center',
-    backgroundColor: '#148ce8',
-    paddingHorizontal: 30,
-    paddingVertical: 15,
+    backgroundColor: '#accae0',
+    paddingHorizontal: Dimensions.get('window').width / 40-1,
+    paddingVertical: 14,
     margin: 30,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -93,6 +111,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: '#000000a0',
+  },
+  buttonpressed: {
+    textAlign: 'center',
+    backgroundColor: '#148ce8',
+    paddingHorizontal: Dimensions.get('window').width / 40,
+    paddingVertical: 15,
+    margin: 30,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
 });
 

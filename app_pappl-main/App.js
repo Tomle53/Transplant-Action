@@ -8,6 +8,7 @@ import ParametragePartie from './ParametragePartie';
 import EcranDeJeu1 from './EcranDeJeu1';
 import EcranDeJeu2 from './EcranDeJeu2';
 import EcranDeFinDePartie from './EcranDeFinDePartie';
+import Personnaliser from './Personnaliser';
 /* eslint-disable prettier/prettier */
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const App = () => {
           options={{ title: "Transplant'action" }}
         />
         <Stack.Screen name="Aide" component={Aide} />
+        <Stack.Screen name="Personnaliser" component={Personnaliser} />
         <Stack.Screen name="ParametragePartie" component={ParametragePartie}
         options={{ title: "Paramètres" }}/>
         <Stack.Screen name="EcranDeJeu1" component={EcranDeJeu1}
