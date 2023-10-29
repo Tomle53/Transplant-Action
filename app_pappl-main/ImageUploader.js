@@ -24,15 +24,15 @@ const ImageUploader = ()=>{
           };
         
           return (
-            <div>
+            <Text>
               <input
                 type="file"
                 accept="image/*"
                 id="imageInput"
                 onChange={handleImageChange}
               />
-              {image && <img src={image} alt="Aperçu de l'image" />}
-            </div>
+              
+            </Text>
           );
         }
 

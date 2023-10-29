@@ -10,15 +10,15 @@ const Personnaliser = ()=>{
     
        return(
         <View>
-        <Text style={styles.tittle}> Donneur 1 :</Text>
-        <ImageUploader> </ImageUploader>
-        <Text>Donneur 2 :
-        <ImageUploader></ImageUploader>
-        </Text>
-        Donneur 3 :
-        <ImageUploader></ImageUploader>
-        Donneur 4 :
-        <ImageUploader></ImageUploader>
+        <Text style={styles.title}> Personnalisation des donneurs</Text>
+        <Text style={styles.text}> Donneur 1 : 
+        <ImageUploader> </ImageUploader></Text>
+        <Text style={styles.text}> Donneur 2 : 
+        <ImageUploader></ImageUploader></Text>
+        <Text style={styles.text}> Donneur 3 : 
+        <ImageUploader></ImageUploader></Text>
+        <Text style={styles.text}> Donneur 4 : 
+        <ImageUploader></ImageUploader></Text>
         
         </View>
         
@@ -50,6 +50,7 @@ const Personnaliser = ()=>{
             },
             title: {
               fontSize: 50,
+              textAlign: 'center',
               fontWeight: 'bold',
               color: '#148ce8',
               borderTopLeftRadius: 20,
@@ -82,11 +83,11 @@ const Personnaliser = ()=>{
               tintColor: 'black',
             },
             text: {
-              color: 'white',
-              fontSize: 42,
+              color: 'dark',
+              fontSize: 20,
               fontWeight: 'bold',
               textAlign: 'center',
-              backgroundColor: '#000000a0',
+              
             },
             buttonpressed: {
               textAlign: 'center',
