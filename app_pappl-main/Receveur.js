@@ -46,7 +46,7 @@ const Receveur = () => {
     </Text>
     <Text style={styles.instruction}> Quelle est l'âge du docteur Saha ? </Text>
     <ChampAge style={styles.barreTexte} bonAge={AgeDoc} age={age} changeAge={changeAge} changeAgeOk={changeAgeOk} />
-    <Text style={styles.instruction}> Quelle est la séquence protéinique du docteur Saha ? </Text>
+    <Text style={styles.instruction}> Quelle est la séquence protéique du docteur Saha ? </Text>
     <TextInput onChangeText={value => setProteineOk(value === seqProteine)} style={styles.input} />
 
     <Text>
