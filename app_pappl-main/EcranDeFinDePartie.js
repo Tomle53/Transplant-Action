@@ -41,7 +41,7 @@ const EcranDeFinDePartie = ({ route, navigation }) => {
               console.log(time);
             }}
           />
-        <Text style={styles.title}>{gagne ? 'Félicitation' : "Dommage"}</Text>
+        <Text style={styles.title}>{gagne ? 'Félicitations' : "Dommage"}</Text>
         <Text style={styles.instruction}> {gagne ? 'Vous avez réussi à sauver le docteur Saha' : "Vous n'avez pas réussi à sauver le docteur Saha"}</Text>
         <Image style={styles.image} source={gagne ? require('./pictures/congrats.gif') : require('./pictures/kermit-worried.gif')} />
         <Pressable
@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
-    width: 900,
-    height: 300,
+    width: 350,
+    height: 500,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     borderTopLeftRadius: 20,
