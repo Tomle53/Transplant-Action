@@ -40,14 +40,14 @@ const Receveur = () => {
   }, [ageOk, proteineOk, genre]);
 
   return <View style={styles.container}>
-    <Text style={styles.instruction}> Quelle est le sexe du docteur Saha ?</Text>
+    <Text style={styles.instruction}> Quel est le sexe du docteur Saha ?</Text>
     <Text>
       <Pressable style={[genre ? styles.button : styles.buttonpressed]} title="Homme" onPress={() => setGenre(false)}> <Text style={styles.buttonText}> Homme </Text> </Pressable>
       <Pressable style={[genre ? styles.buttonpressed : styles.button]} title="Femme" onPress={() => setGenre(true)}> <Text style={styles.buttonText}> Femme </Text> </Pressable>
     </Text>
-    <Text style={styles.instruction}> Quelle est l'âge du docteur Saha ? </Text>
+    <Text style={styles.instruction}> Quel est l'âge du docteur Saha ? </Text>
     <ChampAge style={styles.barreTexte} bonAge={AgeDoc} age={age} changeAge={changeAge} changeAgeOk={changeAgeOk} />
-    <Text style={styles.instruction}> Quelle est la séquence protéinique du docteur Saha ? </Text>
+    <Text style={styles.instruction}> Quelle est la séquence protéique du docteur Saha ? </Text>
     <TextInput onChangeText={value => setProteineOk(value === seqProteine)} style={styles.input} />
 
     <Text>

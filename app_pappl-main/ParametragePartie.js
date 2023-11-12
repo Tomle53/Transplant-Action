@@ -39,11 +39,11 @@ const ParametragePartie = ({ navigation }) => {
           </Pressable>
 
           <Pressable
-              style={styles.buttonpressed}
+              style={[ !isNaN(number) && number!="" ? styles.buttonpressed : styles.button]}
               title="Lancer la partie"
-              onPress={() =>
+              onPress={() => {if(!isNaN(number)){
                 navigation.navigate('EcranDeJeu1', {timer: number} )
-              }
+              }}}
             >
               <Text style={styles.buttonText}> Lancer la partie </Text>
           </Pressable>

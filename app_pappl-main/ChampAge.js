@@ -15,19 +15,19 @@ const ChampAge = ({ bonAge, age, changeAge, changeAgeOk }) => {
     const [ageRempli, setAgeRempli] = useState(age)
     return <View>
         <TextInput style={styles.input} value={ageRempli.toString()}
-            onChangeText={(value) => setAgeRempli(parseInt(value))}
+            onChangeText={(value) =>{if(!isNaN(parseInt(value))){ setAgeRempli(parseInt(value))}if(value==""){setAgeRempli("")}}}
             onBlur={() => {
                 changeAge(parseInt(ageRempli)); 
                 setAgeRempli(age);
                 changeAgeOk(parseInt(ageRempli) == bonAge)
-            }}
-            keyboardType="numeric" />
+                }
+            }
+            />
         <Slider
             value={age}
             onValueChange={(value) => { changeAge(value); setAgeRempli(value) }}
             onSlidingComplete={(value) => changeAgeOk(value == bonAge)}
             step={1}
-
             minimumValue={20}
             maximumValue={80}
             style={{ width: Dimensions.get('window').width / 4 - 10, alignSelf: 'center', }}

@@ -24,8 +24,8 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
             </Text>
             <Text style={styles.instruction}> Âge du donneur ? </Text>
             <ChampAge bonAge={bonAge} age = {age} changeAge={changeAge} changeAgeOk = {changeAgeOk}/>
-            <>{ageOk&&genre&&<Text>Combien de protéines sont différentes entre les deux séquences ?</Text>}</>
-            <>{ageOk&&genre&&<Text>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>}</>
+            <>{ageOk&&genre&&<Text style={styles.instruction}>Combien d'acides aminés sont différentes entre les deux séquences ?</Text>}</>
+            <>{ageOk&&genre&&<Text style={{ textAlign: 'right' }}>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>}</>
             <>{ageOk&&genre&&<TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {styles.input}/>}</> 
             <>{mismatchOk&&<Text>Compatibilité : {compatibilite}%</Text>}</>
             <>{resolu&&<Pressable style={styles.buttonpressed} title={correct ? "gagner": "perdre"}onPress={() =>
