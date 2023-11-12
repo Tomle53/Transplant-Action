@@ -27,6 +27,7 @@ const Receveur = () => {
       else {
         if (parseInt(value) > 80) { setAge(80) }
         else { setAge(value) }}}}
+        
   const changeDisable = () => {
     if (ageOk && proteineOk && genre) {
       setButtonDisabled(false);
@@ -130,10 +131,10 @@ const styles = StyleSheet.create({
   image: {
     alignSelf: 'center',
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     justifyContent: 'center',
     width: 300,
-    height: 300,
+    height: 1000,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     borderTopLeftRadius: 20,

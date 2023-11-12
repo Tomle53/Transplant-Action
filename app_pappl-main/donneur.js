@@ -15,7 +15,8 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
     const navigation = useNavigation();
     return <View style={styles.container}>           
             <Text numberOfLines={1} style={styles.nom}>{nom}</Text>
-            <Image source = {imageSource} style={styles.image}/>
+            <Image style={styles.image} source = {imageSource} />
+
             <Text style={styles.instruction}> Sexe du donneur ? </Text>
             <Text>
                 <Pressable style={[indicationGenre === 'F' ? [genre  ? styles.button : styles.buttonpressed] : [genre  ? styles.buttonpressed: styles.button]]} title="Homme" onPress={() => changeGenre(indicationGenre==='M')}> <Text style={styles.buttonText}> Homme </Text> </Pressable>
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'column',
       textAlign: 'center',
-      justifyContent: 'start',
+      justifyContent: 'flex-start',
       marginTop: 20,
       backgroundColor: 'white',
       width: Dimensions.get('window').width / 4,
@@ -97,15 +98,12 @@ const styles = StyleSheet.create({
     },
     image: {
       alignSelf: 'center',
-      flex: 1,
-      resizeMode: 'cover',
+      flex:1,
+      resizeMode: 'contain',
       justifyContent: 'center',
-      width: 300,
-      height: 150,
-      borderBottomLeftRadius: 20,
-      borderBottomRightRadius: 20,
-      borderTopLeftRadius: 20,
-      borderTopRightRadius: 20,
+      width: 500,
+      height: 500,
+marginBottom: 500,
       margin: 5,
     },
     text: {
@@ -126,6 +124,7 @@ const styles = StyleSheet.create({
     nom: {
         fontSize: 25,
         fontWeight: 'bold',
+        
 
     }
   });

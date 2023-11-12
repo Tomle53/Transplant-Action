@@ -230,8 +230,8 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: 'center',
-    flex: 1,
-    resizeMode: 'cover',
+  flex :1,
+    resizeMode: 'contain',
     justifyContent: 'center',
     width: 300,
     height: 300,

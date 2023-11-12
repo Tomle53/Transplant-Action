@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
       justifyContent: 'start',
       marginTop: 20,
       backgroundColor: 'white',
+      
 
     },
     buttonText: {
@@ -99,16 +100,22 @@ const styles = StyleSheet.create({
     },
     image: {
         alignSelf: 'center',
-        flex: 1,
-        resizeMode: 'cover',
+       
+        resizeMode: 'contain',
+       
         justifyContent: 'center',
-        width: 300,
+        width: Dimensions.get('window').width,
         height: 300,
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         margin: 5,
+        
+       
+         
+        
+         
       },
     text: {
       color: 'white',
