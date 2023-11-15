@@ -8,7 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Button, StyleSheet, Pressable, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Donneur from './Donneur';
+import Donneur from './donneur';
 import {  Timer } from 'react-native-stopwatch-timer';
 
 const nombreDeDonneurs = 4;

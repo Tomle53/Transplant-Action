@@ -24,14 +24,16 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
             </Text>
             <Text style={styles.instruction}> Âge du donneur ? </Text>
             <ChampAge bonAge={bonAge} age = {age} changeAge={changeAge} changeAgeOk = {changeAgeOk}/>
-            <>{ageOk&&genre&&<Text style={styles.instruction}>Combien d'acides aminés sont différentes entre les deux séquences ?</Text>}</>
-            <>{ageOk&&genre&&<Text style={{ textAlign: 'right' }}>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>}</>
-            <>{ageOk&&genre&&<TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {styles.input}/>}</> 
-            <>{mismatchOk&&<Text>Compatibilité : {compatibilite}%</Text>}</>
-            <>{resolu&&<Pressable style={styles.buttonpressed} title={correct ? "gagner": "perdre"}onPress={() =>
+            <View style={ageOk&&genre ? styles.texteVisible : styles.texteCache}>
+              <Text style={styles.instruction}>Combien d'acides aminés sont différentes entre les deux séquences ?</Text>
+              <Text style={{ textAlign: 'right' }}>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>
+              <TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {styles.input}/>
+              </View>
+            <Text style={mismatchOk ? styles.texteVisible : styles.texteCache}>Compatibilité : {compatibilite}%</Text>
+            <><Pressable style={resolu ? styles.buttonpressed: styles.buttonCache} title={correct ? "gagner": "perdre"}onPress={() =>
           navigation.navigate('EcranDeFinDePartie',{
             gagne:  correct
-          })}> <Text style={styles.buttonText}> Choisir </Text> </Pressable>}</>
+          })}disabled={!resolu}> <Text style={resolu ? styles.buttonText: styles.texteCache}> Choisir </Text> </Pressable></>
             <Text>{resolu}</Text>
     </View>
 }
@@ -121,6 +123,23 @@ marginBottom: 500,
       width: Dimensions.get('window').width/4-10,
       alignSelf: 'center',
     }, 
+    texteCache: {
+      opacity: 0,
+    }, 
+    texteVisible:{
+
+    },
+    buttonCache: {
+      textAlign: 'center',
+      backgroundColor: 'white',
+      paddingHorizontal: (Dimensions.get('window').width / 60)-1,
+      paddingVertical: 9,
+      margin: 25,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      borderBottomLeftRadius: 20,
+      borderBottomRightRadius: 20,
+    },
     nom: {
         fontSize: 25,
         fontWeight: 'bold',
