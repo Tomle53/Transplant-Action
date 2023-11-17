@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, Pressable } from 'react-native';
+import { Text, StyleSheet, View, Pressable, useWindowDimensions, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import ResponsiveFontSize from 'react-native-responsive-fontsize';
 /* eslint-disable prettier/prettier */
 /**
  * 
  * @returns L'écran d'aide, contenant la documentation destinée à l'utilisateur.
  */
+
+
 const Aide = () => {
     const navigation = useNavigation();
+    const {width}= useWindowDimensions();
+    const responsiveFontSize = (size) => {
+      // Ajuster la taille de la police en fonction de la largeur de l'écran
+      return Math.round((size * width) / 375);}
     return(
         <View style={styles.container}>
         <Text style={styles.title}>Bienvenue dans Transplant'Action !</Text>
@@ -56,17 +62,19 @@ const styles = StyleSheet.create({
       marginHorizontal: 10,
     },
     title: {
-      fontSize: 50,
+      fontSize: Dimensions.get('window').width/15,
       fontWeight: 'bold',
       color: '#148ce8',
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
+      width: '100%',
+      marginBottom: Dimensions.get('window').height/20
     },
     instruction: {
-      textAlign:'center',
-      fontSize: 20,
-      //fontStyle: 'italic',
-      fontWeight: 'bold',
+      
+      fontSize: 10,
+      textAlign: 'left',
+    
       margin: 10,
     },
     button: {

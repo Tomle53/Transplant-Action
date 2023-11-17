@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   flex :1,
     resizeMode: 'contain',
     justifyContent: 'center',
-    width: 300,
+    width: Dimensions.get('window').width,
     height: 300,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
