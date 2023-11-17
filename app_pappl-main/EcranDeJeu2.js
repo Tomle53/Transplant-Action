@@ -60,9 +60,9 @@ const EcranDeJeu2 = ({ navigation }) => {
   const mismatchesOk = []
   const changeMismatchesOk = []
   let [resolu,setResolu] = useState(false);
-  const verifierTout = () => {if(mismatchesOk.every(Boolean)){setResolu(resolu=true)}};
+  const verifierTout = () => {if(mismatchesOk.every(Boolean)){setResolu(resolu=true)}else{setResolu(resolu=false)}};
 
-  useEffect(() => verifierTout());
+  useEffect(() => {verifierTout();},[mismatchesOk]);
   for(index=0;index<nombreDeDonneurs;index++){
     const [age,setAge] = useState(20);
     ages.push(age)
