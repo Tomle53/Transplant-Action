@@ -31,7 +31,7 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
              <View style={ageOk&&genre ? styles.texteVisible : styles.texteCache}>
               <Text style={styles.instruction}>Combien d'acides aminés sont différentes entre les deux séquences ?</Text>
               <Text style={{ textAlign: 'right' }}>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>
-              <TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {[styles.input,width >600?{ width:width/4 -10  } : { width: Dimensions.get('window').width/1.5 }]}/>
+              <TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {[styles.input, width >600? { width:width/4 -10  } : { width: Dimensions.get('window').width/1.5 }]}/>
               
             <Text style={mismatchOk ? styles.texteVisible : styles.texteCache}>Compatibilité : {compatibilite}%</Text>
             </View>
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
       flex:1,
       resizeMode: 'contain',
       justifyContent: 'center',
-      
+
       height: 500,
       margin: 5,
     },
@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
       margin: 12,
       borderWidth: 1,
       padding: 10,
+      width: Dimensions.get('window').width/4-10,
       alignSelf: 'center',
     }, 
     texteCache: {
