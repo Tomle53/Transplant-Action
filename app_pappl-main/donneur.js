@@ -1,11 +1,10 @@
-
 /* eslint-disable prettier/prettier */
 import { Image, Text, TextInput, Button, StyleSheet, Pressable, Dimensions, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import React from 'react';
 import { View } from 'react-native';
-import ChampAge from './ChampAge';
+import ChampAgeDonneur from './ChampAgeDonneur';
 
 
 
@@ -14,6 +13,7 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
     correct, resolu, sequence, mismatchOk, changeMismatchOk}) => {
     const navigation = useNavigation();
     const { width } = useWindowDimensions();
+    const [inputValue, setInputValue] = useState("");
     return <View style={[styles.container,Dimensions.get('window').width >600 ? {width:width / 4} :{width: Dimensions.get('window').width} ]}>   
             
             <Text style={styles.nom}>{nom}</Text>
@@ -22,21 +22,17 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
             </Text>
             <Text style={styles.instruction}> Sexe du donneur ? </Text>
             <Text>
-                <Pressable style={[indicationGenre === 'F' ? [genre  ? styles.button : styles.buttonpressed] : [genre  ? styles.buttonpressed: styles.button]]} title="Homme" onPress={() => {changeGenre(indicationGenre==='M');changeMismatchOk(false)}}> <Text style={styles.buttonText}> Homme </Text> </Pressable>
-                <Pressable style={[indicationGenre === 'F' ? [genre  ? styles.buttonpressed : styles.button] : [genre  ? styles.button: styles.buttonpressed]]} title="Femme" onPress={() => {changeGenre(indicationGenre==='F');changeMismatchOk(false)}}> <Text style={styles.buttonText}> Femme </Text> </Pressable>
+                <Pressable style={[indicationGenre === 'F' ? [genre  ? styles.button : styles.buttonpressed] : [genre  ? styles.buttonpressed: styles.button]]} title="Homme" onPress={() => {changeGenre(indicationGenre==='M');changeMismatchOk(false);setInputValue("")}}> <Text style={styles.buttonText}> Homme </Text> </Pressable>
+                <Pressable style={[indicationGenre === 'F' ? [genre  ? styles.buttonpressed : styles.button] : [genre  ? styles.button: styles.buttonpressed]]} title="Femme" onPress={() => {changeGenre(indicationGenre==='F');changeMismatchOk(false);setInputValue("")}}> <Text style={styles.buttonText}> Femme </Text> </Pressable>
             </Text>
             <Text style={styles.instruction}> Âge du donneur ? </Text>
-            <ChampAge bonAge={bonAge} age = {age} changeAge={changeAge} changeAgeOk = {changeAgeOk}/>
-          
+            <ChampAgeDonneur bonAge={bonAge} age = {age} changeAge={changeAge} changeAgeOk = {changeAgeOk} mismatchOk={mismatchOk} changeMismatchOk={changeMismatchOk} inputValue={inputValue} setInputValue={setInputValue}/>
              <View style={ageOk&&genre ? styles.texteVisible : styles.texteCache}>
               <Text style={styles.instruction}>Combien d'acides aminés sont différentes entre les deux séquences ?</Text>
               <Text style={{ textAlign: 'right' }}>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>
-              <TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {styles.input}/>
-              </View>
-            <Text style={ageOk&&genre&&mismatchOk ? styles.texteVisible : styles.texteCache}>Compatibilité : {compatibilite}%</Text>
-              <TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {[styles.input,width >600?{ width:width/4 -10  } : { width: Dimensions.get('window').width/1.5 }]}/>
+              <TextInput value={inputValue} onChangeText={value => {changeMismatchOk(parseInt(value)===((100-compatibilite)/20));setInputValue(value)}} style = {[styles.input, width >600? { width:width/4 -10  } : { width: Dimensions.get('window').width/1.5 }]}/>
               
-            <Text style={mismatchOk ? styles.texteVisible : styles.texteCache}>Compatibilité : {compatibilite}%</Text>
+            <Text style={ageOk&&genre&&mismatchOk ? styles.texteVisible : styles.texteCache}>Compatibilité : {compatibilite}%</Text>
             </View>
             <><Pressable style={resolu ? styles.buttonpressed: styles.buttonCache} title={correct ? "gagner": "perdre"}onPress={() =>
           navigation.navigate('EcranDeFinDePartie',{
@@ -111,7 +107,7 @@ const styles = StyleSheet.create({
       flex:1,
       resizeMode: 'contain',
       justifyContent: 'center',
-      
+
       height: 500,
       margin: 5,
     },
@@ -127,6 +123,7 @@ const styles = StyleSheet.create({
       margin: 12,
       borderWidth: 1,
       padding: 10,
+      width: Dimensions.get('window').width/4-10,
       alignSelf: 'center',
     }, 
     texteCache: {
@@ -154,4 +151,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default Donneur; 
+export default Donneur;
