@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import { useState } from 'react';
-import { Text, View, TextInput, Button, Dimensions } from 'react-native';
+import { Text, View, TextInput, Button, Dimensions, useWindowDimensions } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { StyleSheet } from 'react-native-web';
 
@@ -13,8 +13,10 @@ import { StyleSheet } from 'react-native-web';
 
 const ChampAge = ({ bonAge, age, changeAge, changeAgeOk }) => {
     const [ageRempli, setAgeRempli] = useState(age)
+    const { width } = useWindowDimensions();
     return <View>
-        <TextInput style={styles.input} value={ageRempli.toString()}
+        <TextInput style={[styles.input,width >600?{ width:width/4 -10  } : { width: Dimensions.get('window').width/1.5 }]}
+             value={ageRempli.toString()}
             onChangeText={(value) =>{if(!isNaN(parseInt(value))){ setAgeRempli(parseInt(value))}if(value==""){setAgeRempli("")}}}
             onBlur={() => {
                 changeAge(parseInt(ageRempli)); 
@@ -30,7 +32,10 @@ const ChampAge = ({ bonAge, age, changeAge, changeAgeOk }) => {
             step={1}
             minimumValue={20}
             maximumValue={80}
-            style={{ width: Dimensions.get('window').width / 4 - 10, alignSelf: 'center', }}
+            style={{
+                width: width > 600 ? width / 4 - 10 : width / 1.5,
+                alignSelf: 'center',
+              }}
             thumbTintColor='#148ce8'
             minimumTrackTintColor='#148ce8'
         />
