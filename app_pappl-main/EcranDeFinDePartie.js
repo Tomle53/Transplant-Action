@@ -3,7 +3,7 @@
  * @returns L'écran de fin de partie, affichant des messages et images différents selon comment l'utilisateur y est arrivé.
  */
 import React, { Component, useState } from 'react';
-import { Text, View, Button, Image, StyleSheet, Pressable } from 'react-native';
+import { Text, View, Button, Image, StyleSheet, Pressable, useWindowDimensions, Dimensions } from 'react-native';
 import {  Timer } from 'react-native-stopwatch-timer';
 
 /**
@@ -13,6 +13,7 @@ import {  Timer } from 'react-native-stopwatch-timer';
  */
 
 const EcranDeFinDePartie = ({ route, navigation }) => {
+  const { width } = useWindowDimensions();
   const gagne = route.params.gagne;
   const timer = global.time;
   const [isTimerStart, setIsTimerStart] = useState(false);
@@ -118,10 +119,9 @@ const styles = StyleSheet.create({
   image: {
     alignSelf: 'center',
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     justifyContent: 'center',
-    width: 900,
-    height: 300,
+    width: Dimensions.get('window').width-10,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     borderTopLeftRadius: 20,

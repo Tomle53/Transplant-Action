@@ -68,6 +68,7 @@ const ParametragePartie = ({ navigation }) => {
               <Text style={[styles.buttonText,Dimensions.get('window').width>600 ? {fontSize:width/35} : {fontSize:width/20}]}>
                  Lancer la partie </Text>
           </Pressable>
+          <Text> </Text>
         </View>
     )
 }
@@ -163,7 +164,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#148ce8',
     paddingVertical: 15,
     margin: 30,
-    marginBottom: 10,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderBottomLeftRadius: 20,

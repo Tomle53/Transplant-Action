@@ -1,6 +1,6 @@
 
 /* eslint-disable prettier/prettier */
-import { Image, Text, TextInput, Button, StyleSheet, Pressable, Dimensions } from 'react-native';
+import { Image, Text, TextInput, Button, StyleSheet, Pressable, Dimensions, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import React from 'react';
@@ -13,10 +13,13 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
 
     correct, resolu, sequence, mismatchOk, changeMismatchOk}) => {
     const navigation = useNavigation();
-    return <View style={styles.container}>           
-            <Text numberOfLines={1} style={styles.nom}>{nom}</Text>
-            <Image style={styles.image} source = {imageSource} />
-
+    const { width } = useWindowDimensions();
+    return <View style={[styles.container,Dimensions.get('window').width >600 ? {width:width / 4} :{width: Dimensions.get('window').width} ]}>   
+            
+            <Text style={styles.nom}>{nom}</Text>
+            <Text>
+            <Image style={[styles.image, width >600?{width: Dimensions.get('window').width/4.3}:{width: Dimensions.get('window').width/1.4}]} source = {imageSource} />
+            </Text>
             <Text style={styles.instruction}> Sexe du donneur ? </Text>
             <Text>
                 <Pressable style={[indicationGenre === 'F' ? [genre  ? styles.button : styles.buttonpressed] : [genre  ? styles.buttonpressed: styles.button]]} title="Homme" onPress={() => changeGenre(indicationGenre==='M')}> <Text style={styles.buttonText}> Homme </Text> </Pressable>
@@ -24,17 +27,20 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
             </Text>
             <Text style={styles.instruction}> Âge du donneur ? </Text>
             <ChampAge bonAge={bonAge} age = {age} changeAge={changeAge} changeAgeOk = {changeAgeOk}/>
-            <View style={ageOk&&genre ? styles.texteVisible : styles.texteCache}>
+          
+             <View style={ageOk&&genre ? styles.texteVisible : styles.texteCache}>
               <Text style={styles.instruction}>Combien d'acides aminés sont différentes entre les deux séquences ?</Text>
               <Text style={{ textAlign: 'right' }}>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>
               <TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {styles.input}/>
-              </View>
+              
             <Text style={mismatchOk ? styles.texteVisible : styles.texteCache}>Compatibilité : {compatibilite}%</Text>
+            </View>
             <><Pressable style={resolu ? styles.buttonpressed: styles.buttonCache} title={correct ? "gagner": "perdre"}onPress={() =>
           navigation.navigate('EcranDeFinDePartie',{
             gagne:  correct
-          })}disabled={!resolu}> <Text style={resolu ? styles.buttonText: styles.texteCache}> Choisir </Text> </Pressable></>
-            <Text>{resolu}</Text>
+          
+          })}disabled={!resolu}> <Text style={resolu ? styles.buttonText: styles.texteCache}> Choisir </Text> </Pressable></> 
+            <Text>{resolu}</Text> 
     </View>
 }
 
@@ -46,8 +52,7 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
       marginTop: 20,
       backgroundColor: 'white',
-      width: Dimensions.get('window').width / 4,
-      height: Dimensions.get('window').height - 30,
+      
     },
     buttonText: {
       fontSize: 20,
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
       fontSize: 20,
       //fontStyle: 'italic',
       fontWeight: 'bold',
-      margin: 10,
+
     },
     button: {
       textAlign: 'center',
@@ -103,9 +108,8 @@ const styles = StyleSheet.create({
       flex:1,
       resizeMode: 'contain',
       justifyContent: 'center',
-      width: 500,
+      width: Dimensions.get('window').width/4,
       height: 500,
-marginBottom: 500,
       margin: 5,
     },
     text: {
