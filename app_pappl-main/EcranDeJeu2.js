@@ -11,6 +11,8 @@ import { useNavigation } from '@react-navigation/native';
 import Donneur from './donneur';
 import {  Timer } from 'react-native-stopwatch-timer';
 
+
+
 const nombreDeDonneurs = 4;
 const nomDonneurCorrect = 'Dr Maya Curado';
 const ageDonneurCorrect = 33;
@@ -31,6 +33,8 @@ while(indexFauxDonneurs.length<nombreDeDonneurs-1){
     indexFauxDonneurs.push(nouvelIndex)
   }
 }
+
+
 /*const Donneurs =  [];
 let donneurCorrectAjoute = false;
 for(index=0;index<indexFauxDonneurs.length+1;index++){
@@ -56,7 +60,7 @@ const EcranDeJeu2 = ({ navigation }) => {
   const changeAgesOk = []
   const genres=[]
   const changeGenres = []
-
+  const images=[]
   const mismatchesOk = []
   const changeMismatchesOk = []
   let [resolu,setResolu] = useState(false);

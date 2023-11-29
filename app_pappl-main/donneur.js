@@ -6,12 +6,29 @@ import { useState } from 'react';
 import React from 'react';
 import { View } from 'react-native';
 import ChampAge from './ChampAge';
+import { difficulte } from './ParametragePartie';
 
-
+ 
 
 const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk, indicationGenre , genre, changeGenre, compatibilite, 
 
     correct, resolu, sequence, mismatchOk, changeMismatchOk}) => {
+      const couleurlettre=()=> {
+        let ch="MYHKL";
+        let similitudes =[];
+      if(!difficulte){
+        for(let i=0;i<5;i++){
+      if (sequence.charAt(i)===ch.charAt(i)){
+      similitudes.push("True");
+     }
+      else {
+        similitudes.push("False");
+      }
+        }
+      }
+      return similitudes;
+    } ;
+     const similitudes= couleurlettre(); 
     const navigation = useNavigation();
     const { width } = useWindowDimensions();
     return <View style={[styles.container,Dimensions.get('window').width >600 ? {width:width / 4} :{width: Dimensions.get('window').width} ]}>   
@@ -27,15 +44,11 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
             </Text>
             <Text style={styles.instruction}> Âge du donneur ? </Text>
             <ChampAge bonAge={bonAge} age = {age} changeAge={changeAge} changeAgeOk = {changeAgeOk}/>
-          
-             <View style={ageOk&&genre ? styles.texteVisible : styles.texteCache}>
-              <Text style={styles.instruction}>Combien d'acides aminés sont différentes entre les deux séquences ?</Text>
-              <Text style={{ textAlign: 'right' }}>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>
-              <TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {[styles.input, width >600? { width:width/4 -10  } : { width: Dimensions.get('window').width/1.5 }]}/>
-              
-            <Text style={mismatchOk ? styles.texteVisible : styles.texteCache}>Compatibilité : {compatibilite}%</Text>
-            </View>
-            <><Pressable style={resolu ? styles.buttonpressed: styles.buttonCache} title={correct ? "gagner": "perdre"}onPress={() =>
+            <>{ageOk&&genre&&<Text>Combien de protéines sont différentes entre les deux séquences ?</Text>}</>
+            <>{ageOk&&genre&&<Text>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>}</>
+            <>{ageOk&&genre&&<TextInput onChangeText={value => changeMismatchOk(parseInt(value)===((100-compatibilite)/20))} style = {styles.input}/>}</> 
+            <>{mismatchOk&&<Text>Compatibilité : {compatibilite}%</Text>}</>
+            <>{resolu&&<Pressable style={styles.button} title={correct ? "gagner": "perdre"}onPress={() =>
           navigation.navigate('EcranDeFinDePartie',{
             gagne:  correct
           
@@ -112,6 +125,14 @@ const styles = StyleSheet.create({
       height: 500,
       margin: 5,
     },
+      lettreR: {
+        color: 'red',
+    },
+    lettreG: {
+      color: 'red',
+    },
+ 
+  
     text: {
       color: 'white',
       fontSize: 42,
