@@ -82,11 +82,7 @@ const Accueil = ({ navigation }) => {
       borderBottomRightRadius: 20,
     },
     image: {
-      flex: 1,
-      resizeMode: 'cover',
-      justifyContent: 'center',
-      opacity: 1,
-      tintColor: 'black',
+      align:'center',
     },
     text: {
       color: 'white',
