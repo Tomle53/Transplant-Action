@@ -43,7 +43,6 @@ const EcranDeJeu1 = ({ route, navigation }) => {
           />
         <Text style={styles.title} > Étape 1: </Text>
         <Text style={styles.instruction}>Trouver les informations sur le docteur Saha pour continuer </Text>
-        <Text>{difficulte ? "Normal" : "Facile"}</Text>
         <Image style={styles.image} source={imgSrc}/>
         <Receveur difficulte={difficulte}/>
         <Text> </Text>

@@ -43,7 +43,6 @@ const Receveur = ({difficulte}) => {
   return <View style={styles.container}>
     <Text style={styles.instruction}> Quel est le sexe du docteur Saha ?</Text>
     <Text>
-      <Text>{difficulte ? "Normal" : "Facile"}</Text>
       <Pressable style={[genre ? styles.button : styles.buttonpressed]} title="Homme" onPress={() => setGenre(false)}> <Text style={styles.buttonText}> Homme </Text> </Pressable>
       <Pressable style={[genre ? styles.buttonpressed : styles.button]} title="Femme" onPress={() => setGenre(true)}> <Text style={styles.buttonText}> Femme </Text> </Pressable>
     </Text>
