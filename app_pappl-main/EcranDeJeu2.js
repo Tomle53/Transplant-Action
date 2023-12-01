@@ -62,7 +62,7 @@ const EcranDeJeu2 = ({ route,navigation }) => {
   const changeMismatchesOk = []
   let [resolu,setResolu] = useState(false);
   const verifierTout = () => {if(mismatchesOk.every(Boolean)){setResolu(resolu=true)}else{setResolu(resolu=false)}};
-
+  const handleAddTime = ()=>{setIsTimerStart(false),setTimerDuration(global.time+300000),setResetTimer(true)}
   useEffect(() => {verifierTout();},[mismatchesOk]);
   for(index=0;index<nombreDeDonneurs;index++){
     const [age,setAge] = useState(20);
@@ -139,6 +139,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
 
 
         <View style={styles.container}>
+          <View style={styles.timeContainer}>
          <Timer 
             totalDuration={timerDuration}
             secs
@@ -158,11 +159,15 @@ for(let index=0;index<nombreDeDonneurs;index++){
               time = (((Number(time[0])*3600) + (Number(time[1])*60) + Number(time[2])) * 1000);
               global.time = time;
               console.log(time);
+              setIsTimerStart(true);
+              setResetTimer(false);
             }}
-          />
+          /><Pressable style={!difficulte? styles.buttonAddTime : styles.buttonAddTimePressed} onPress={()=>{handleAddTime()}} disabled={difficulte}>
+          <Text style={{color: 'white', fontSize:15}}>Ajouter 5 minutes</Text>
+          </Pressable>
+          </View>
           <Text style={styles.title}> Étape 2 </Text>
           <Text style={styles.instruction}> Rentrer les informations relatives aux donneurs </Text>
-          <Text>{difficulte ? "Normal" : "Facile"}</Text>
         <Text>{resolu}</Text>
         <Text>
         {Donneurs}
@@ -172,6 +177,11 @@ for(let index=0;index<nombreDeDonneurs;index++){
 }
 
 const styles = StyleSheet.create({
+  timeContainer: {
+    flexDirection:'row',
+    justifyContent: 'center',
+    marginLeft:250,
+  },
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -183,6 +193,28 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     color: 'white',
+  },
+  buttonAddTimePressed: {
+    textAlign: 'center',
+    backgroundColor: '#accae0',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    margin: 30,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  buttonAddTime: {
+    textAlign: 'center',
+    backgroundColor: '#148ce8',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    margin: 30,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   barreTexte: {
     textAlign: 'center',

@@ -18,8 +18,10 @@ const EcranDeJeu1 = ({ route, navigation }) => {
     const [timerDuration, setTimerDuration] = useState(timer);
     const [resetTimer, setResetTimer] = useState(false);
     global.time = timer;
+    const handleAddTime = ()=>{setIsTimerStart(false),setTimerDuration(global.time+300000),setResetTimer(true)}
     return(
         <View style={styles.container}>
+          <View style={styles.timeContainer}>
          <Timer 
             totalDuration={timerDuration}
             secs
@@ -39,8 +41,13 @@ const EcranDeJeu1 = ({ route, navigation }) => {
               time = (((Number(time[0])*3600) + (Number(time[1])*60) + Number(time[2])) * 1000);
               global.time = time;
               console.log(time);
+              setIsTimerStart(true);
+              setResetTimer(false);
             }}
-          />
+          /><Pressable style={!difficulte? styles.buttonAddTime : styles.buttonAddTimePressed} onPress={()=>{handleAddTime()}} disabled={difficulte}>
+            <Text style={{color: 'white', fontSize:15}}>Ajouter 5 minutes</Text>
+            </Pressable>
+          </View>
         <Text style={styles.title} > Étape 1: </Text>
         <Text style={styles.instruction}>Trouver les informations sur le docteur Saha pour continuer </Text>
         <Image style={styles.image} source={imgSrc}/>
@@ -51,6 +58,11 @@ const EcranDeJeu1 = ({ route, navigation }) => {
 }
 
 const styles = StyleSheet.create({
+    timeContainer: {
+      flexDirection:'row',
+      justifyContent: 'center',
+      marginLeft:250,
+    },
     container: {
       flex: 1,
       flexDirection: 'column',
@@ -93,6 +105,28 @@ const styles = StyleSheet.create({
       backgroundColor: '#148ce8',
       paddingHorizontal: 30,
       paddingVertical: 15,
+      margin: 30,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      borderBottomLeftRadius: 20,
+      borderBottomRightRadius: 20,
+    },
+    buttonAddTimePressed: {
+      textAlign: 'center',
+      backgroundColor: '#accae0',
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      margin: 30,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      borderBottomLeftRadius: 20,
+      borderBottomRightRadius: 20,
+    },
+    buttonAddTime: {
+      textAlign: 'center',
+      backgroundColor: '#148ce8',
+      paddingHorizontal: 10,
+      paddingVertical: 5,
       margin: 30,
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
