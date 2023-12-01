@@ -44,7 +44,8 @@ for(index=0;index<indexFauxDonneurs.length+1;index++){
   else{Donneurs.push(donneursPotentiels[indexFauxDonneurs[index-1]])}
 }*/
 
-const EcranDeJeu2 = ({ navigation }) => {
+const EcranDeJeu2 = ({ route,navigation }) => {
+  const difficulte = route.params.difficulte;
   const timer = global.time;
   const [isTimerStart, setIsTimerStart] = useState(true);
   const [timerDuration, setTimerDuration] = useState(timer);
@@ -97,7 +98,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
     Donneurs.push(<Donneur key={index.toString()} nom = {nomDonneurCorrect} age = {ages[index]} bonAge = {ageDonneurCorrect} 
     changeAge = {changeAges[index]} ageOk = {agesOk[index]} changeAgeOk = {changeAgesOk[index]} indicationGenre = "F" genre = {genres[index]} changeGenre={changeGenres[index]} compatibilite= {100}
     correct = {true} resolu = {resolu} imageSource = {imageMaya}
-    mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]}
+    mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]} difficulte={difficulte}
     sequence = {sequenceDonneurCorrect}
     />)
     donneurCorrectAjoute = true;
@@ -114,7 +115,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
 
 
   correct = {false} resolu = {resolu} imageSource = {donneursPotentiels[indexFauxDonneurs[index]][4]}
-  mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]}
+  mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]} difficulte={difficulte}
   sequence = {donneursPotentiels[indexFauxDonneurs[index]][5]}
 
   />)
@@ -129,7 +130,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
   compatibilite= {donneursPotentiels[indexFauxDonneurs[index-1]][3]}
 
   correct = {false} resolu = {resolu} imageSource = {donneursPotentiels[indexFauxDonneurs[index-1]][4]}
-  mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]}
+  mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]} difficulte={difficulte}
   sequence = {donneursPotentiels[indexFauxDonneurs[index-1]][5]}
   />)
 }}  
@@ -161,6 +162,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
           />
           <Text style={styles.title}> Étape 2 </Text>
           <Text style={styles.instruction}> Rentrer les informations relatives aux donneurs </Text>
+          <Text>{difficulte ? "Normal" : "Facile"}</Text>
         <Text>{resolu}</Text>
         <Text>
         {Donneurs}

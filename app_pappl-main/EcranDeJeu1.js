@@ -10,6 +10,7 @@ let imgSrc = require('./pictures/docteur.png');
  * @returns Le premier écran de jeu, qui affiche receveur.
  */
 const EcranDeJeu1 = ({ route, navigation }) => {
+    const difficulte=route.params.difficulte;
     const number = route.params.timer;
     const timer = number * 60000;
     const num = 3;
@@ -41,9 +42,10 @@ const EcranDeJeu1 = ({ route, navigation }) => {
             }}
           />
         <Text style={styles.title} > Étape 1: </Text>
-        <Text style={styles.instruction}>Trouver les informations sur le docteur Saha pour continuer</Text>
+        <Text style={styles.instruction}>Trouver les informations sur le docteur Saha pour continuer </Text>
+        <Text>{difficulte ? "Normal" : "Facile"}</Text>
         <Image style={styles.image} source={imgSrc}/>
-        <Receveur/>
+        <Receveur difficulte={difficulte}/>
         <Text> </Text>
         </View>      
     );

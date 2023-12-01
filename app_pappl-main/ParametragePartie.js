@@ -62,13 +62,12 @@ const ParametragePartie = ({ navigation }) => {
               style={[ !isNaN(number) && number!="" ? styles.buttonpressed2 : styles.button2]}
               title="Lancer la partie"
               onPress={() => {if(!isNaN(number)){
-                navigation.navigate('EcranDeJeu1', {timer: number} )
+                navigation.navigate('EcranDeJeu1', {timer: number, difficulte : difficulte} )
               }}}
             >
               <Text style={[styles.buttonText,Dimensions.get('window').width>600 ? {fontSize:width/35} : {fontSize:width/20}]}>
                  Lancer la partie </Text>
           </Pressable>
-          <Text> </Text>
         </View>
     )
 }

@@ -10,7 +10,7 @@ import ChampAgeDonneur from './ChampAgeDonneur';
 
 const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk, indicationGenre , genre, changeGenre, compatibilite, 
 
-    correct, resolu, sequence, mismatchOk, changeMismatchOk}) => {
+    correct, resolu, sequence, mismatchOk, changeMismatchOk,difficulte}) => {
     const navigation = useNavigation();
     const { width } = useWindowDimensions();
     const [inputValue, setInputValue] = useState("");
@@ -29,7 +29,14 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
             <ChampAgeDonneur bonAge={bonAge} age = {age} changeAge={changeAge} changeAgeOk = {changeAgeOk} mismatchOk={mismatchOk} changeMismatchOk={changeMismatchOk} inputValue={inputValue} setInputValue={setInputValue}/>
              <View style={ageOk&&genre ? styles.texteVisible : styles.texteCache}>
               <Text style={styles.instruction}>Combien d'acides aminés sont différentes entre les deux séquences ?</Text>
-              <Text style={{ textAlign: 'right' }}>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>
+              {difficulte ? (// Si difficulte est vrai, afficher le texte sans modification
+                <Text style={{ textAlign: 'right' }}>{"Dr Saha : M Y H K L\n" + nom + " : " + sequence}</Text>) : 
+              (// Sinon, comparer les lettres entre "M Y H K L" et sequence
+                <Text style={{ textAlign: 'right' }}>
+                {"Dr Saha : "}
+                {"M Y H K L".split('').map((letter, index) => (<Text key={index} style={{ color: sequence[index] === letter ? 'green' : 'red' }}>{letter}</Text>))}
+                {"\n" + nom + " : "}
+                {"M Y H K L".split('').map((letter, index) => (<Text key={index} style={{ color: sequence[index] === letter ? 'green' : 'red' }}>{sequence[index]}</Text>))}</Text>)}
               <TextInput value={inputValue} onChangeText={value => {changeMismatchOk(parseInt(value)===((100-compatibilite)/20));setInputValue(value)}} style = {[styles.input, width >600? { width:width/4 -10  } : { width: Dimensions.get('window').width/1.5 }]}/>
               
             <Text style={ageOk&&genre&&mismatchOk ? styles.texteVisible : styles.texteCache}>Compatibilité : {compatibilite}%</Text>
