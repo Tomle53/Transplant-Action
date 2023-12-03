@@ -4,9 +4,8 @@ This component is the first screen of the app. It allows to go to the help scree
 */
 import React, { Component } from 'react';
 import { Button, StyleSheet, View, Text, Pressable, ImageBackground, Image, Dimensions } from 'react-native';
+let imgSrc = require('./pictures/logo.png');
 
-
-let imgSrc = require('./pictures/test_photo.png');
 const Accueil = ({ navigation }) => {
   return (
   <View style={styles.container} >
@@ -30,6 +29,10 @@ const Accueil = ({ navigation }) => {
               <Text style={styles.buttonText}> Aide </Text>
       </Pressable>
     </Text>
+    <Text>
+    <Image style={styles.image} source={imgSrc}/>
+    </Text>
+    
       </View>
   );
   }
@@ -83,6 +86,10 @@ const Accueil = ({ navigation }) => {
     },
     image: {
       align:'center',
+      resizeMode: 'contain',
+      width : Dimensions.get('window').width/5,
+      height : Dimensions.get('window').width/6,
+    
     },
     text: {
       color: 'white',
