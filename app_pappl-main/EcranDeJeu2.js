@@ -11,17 +11,24 @@ import { useNavigation } from '@react-navigation/native';
 import Donneur from './donneur';
 import {  Timer } from 'react-native-stopwatch-timer';
 
+let indexFauxDonneurs = [];
+while(indexFauxDonneurs.length<5){
+  var nouvelIndex = getRandomInt(5)
+  if(indexFauxDonneurs.indexOf(nouvelIndex)===-1){
+    indexFauxDonneurs.push(nouvelIndex)
+  }
+}
 const nomDonneurCorrect = 'Dr Maya Curado';
 const ageDonneurCorrect = 33;
 const sequenceDonneurCorrect = "M Y H K L"
 const imageMaya = require('./pictures/Maya.png')
-const donneursPotentiels = [['Léon Patounec', 22, 'M',40,require('./pictures/Leon.png'),"M Y W I T"],['Dr Emilia Caubert',65, 'F',40,require('./pictures/Emilia.png'), "M G R K P"],['Tomas Parker',61, 'M',60,require('./pictures/Tomas.png'),"M Y H A H"],['Béatrice Tapalinga',23, 'F',0,require('./pictures/Beatrice.png'), "Y G M K T"],['Vlad Koscov',37,'M',0,require('./pictures/Vlad.png'),"L Y K K L"]];
+const donneursPotentiels = [['Léon Patounec', 22, 'M',40,require('./pictures/Leon.png'),"M Y W I T"],['Dr Emilia Caubert',65, 'F',40,require('./pictures/Emilia.png'), "M G R K P"],['Tomas Parker',61, 'M',60,require('./pictures/Tomas.png'),"M Y H A H"],['Béatrice Tapalinga',23, 'F',20,require('./pictures/Beatrice.png'), "Y G M K T"],['Vlad Koscov',37,'M',60,require('./pictures/Vlad.png'),"L Y K K L"]];
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-
+const positionDonneurCorrect = getRandomInt(3);
 
 
 /*const Donneurs =  [];
@@ -54,16 +61,9 @@ const EcranDeJeu2 = ({ route,navigation }) => {
 
   const mismatchesOk = []
   const changeMismatchesOk = []
-  const nombreDeDonneurs = !difficulte ? 4:6;
-  const positionDonneurCorrect = getRandomInt(nombreDeDonneurs);
+  const nombreDeDonneurs = difficulte ? 6:4;
   let [resolu,setResolu] = useState(false);
-  let indexFauxDonneurs = [];
-while(indexFauxDonneurs.length<nombreDeDonneurs-1){
-  var nouvelIndex = getRandomInt(5)
-  if(indexFauxDonneurs.indexOf(nouvelIndex)===-1){
-    indexFauxDonneurs.push(nouvelIndex)
-  }
-}
+
   const verifierTout = () => {if(mismatchesOk.every(Boolean)){setResolu(resolu=true)}else{setResolu(resolu=false)}};
   const handleAddTime = ()=>{setIsTimerStart(false),setTimerDuration(global.time+300000),setResetTimer(true)}
   useEffect(() => {verifierTout();},[mismatchesOk]);
