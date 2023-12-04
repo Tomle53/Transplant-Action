@@ -39,7 +39,7 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
                 {"M Y H K L".split('').map((letter, index) => (<Text key={index} style={{ color: sequence[index] === letter ? 'green' : 'red' }}>{sequence[index]}</Text>))}</Text>)}
               <TextInput value={inputValue} onChangeText={value => {changeMismatchOk(parseInt(value)===((100-compatibilite)/20));setInputValue(value)}} style = {[styles.input, width >600? { width:width/4 -10  } : { width: Dimensions.get('window').width/1.5 }]}/>
               
-            <Text style={ageOk&&genre&&mismatchOk ? styles.texteVisible : styles.texteCache}>Compatibilité : {compatibilite}%</Text>
+            <Text style={ageOk&&genre&&mismatchOk&&(resolu||!difficulte) ? styles.texteVisible : styles.texteCache}>Compatibilité : {compatibilite}%</Text>
             </View>
             <><Pressable style={resolu ? styles.buttonpressed: styles.buttonCache} title={correct ? "gagner": "perdre"}onPress={() =>
           navigation.navigate('EcranDeFinDePartie',{

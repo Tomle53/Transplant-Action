@@ -44,7 +44,7 @@ const EcranDeJeu1 = ({ route, navigation }) => {
               setIsTimerStart(true);
               setResetTimer(false);
             }}
-          /><Pressable style={!difficulte? styles.buttonAddTime : styles.buttonAddTimePressed} onPress={()=>{handleAddTime()}} disabled={difficulte}>
+          /><Pressable style={!difficulte? styles.buttonAddTime : styles.buttonAddTimeCache} onPress={()=>{handleAddTime()}} disabled={difficulte}>
             <Text style={{color: 'white', fontSize:15}}>Ajouter 5 minutes</Text>
             </Pressable>
           </View>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
       borderBottomLeftRadius: 20,
       borderBottomRightRadius: 20,
     },
-    buttonAddTimePressed: {
+    buttonAddTimeCache: {
       textAlign: 'center',
       backgroundColor: '#accae0',
       paddingHorizontal: 10,
@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
       borderTopRightRadius: 20,
       borderBottomLeftRadius: 20,
       borderBottomRightRadius: 20,
+      opacity:0,
     },
     buttonAddTime: {
       textAlign: 'center',
