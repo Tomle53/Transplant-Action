@@ -6,45 +6,66 @@ import { View } from "react-native";
 
 
 
-const ImageUploader = ()=>{
+const ImageUploader = ({ index, selectedIndex, onImageChange }) => {
+  const [image, setImage] = useState(null);
+  const [imageName, setImageName] = useState('');
+  const [nom, onChangeNom] = useState('');
+
+  const handleImageChange = (e) => {
+    const selectedImage = e.target.files[0];
+
+    if (selectedImage) {
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        setImage(event.target.result);
+        setImageName(selectedImage.name);
+        onImageChange({ index: selectedIndex !== null ? selectedIndex : index,nom,  image: event.target.result });
+      };
+
+      reader.readAsDataURL(selectedImage);
+      
+    }
+  };
+
+  const handleNomChange = (nouveauNom) => {
+    onChangeNom(nouveauNom);
+    onImageChange({ index: selectedIndex !== null ? selectedIndex : index, nom: nouveauNom, image });
+  };
+
+
+
+  return (
+    <View>
+      <Text>
+        <Text style={styles.text}>{`Donneur ${index + 1}:`}</Text>
+        <Text style={styles.soustitre}>
+          Nom :
+          <TextInput style={styles.barreTexte} onChangeText={handleNomChange} value={nom} />
+        </Text>
+        <Text style={styles.soustitre}>
+          Image :
+          <Text style={{ textAlign: 'left', margin: 10 }}>
+            {image ? (
+              <View>
+                <label htmlFor={`imageInput-${index}`} style={styles.uploadButton2}>
+                  <span style={styles.buttonText2}>{imageName}</span>
+                </label>
+              </View>
+            ) : (
+              <label htmlFor={`imageInput-${index}`} style={styles.uploadButton}>
+                <span style={styles.buttonText}> Vide </span>
+              </label>
+            )}
+            <input type="file" accept="image/*" id={`imageInput-${index}`} onChange={handleImageChange} style={{ display: 'none' }} />
+          </Text>
+        </Text>
+      </Text>
+    </View>
+  );
+};
     
-        const [image, setImage] = useState(null);
-        const [imageName, setImageName] = useState(''); 
-        const handleImageChange = (e) => {
-            const selectedImage = e.target.files[0];
         
-            if (selectedImage) {
-              const reader = new FileReader();
-        
-              reader.onload = (event) => {
-                setImage(event.target.result);
-                setImageName(selectedImage.name);
-              };
-        
-              reader.readAsDataURL(selectedImage);
-            }
-          };
-        
-          return (
-            
-            <Text style={{ textAlign: 'left', margin: '10px' }}>
-              {image ? (<label htmlFor="imageInput" style={styles.uploadButton2}>
-              <span style={styles.buttonText2}> {imageName}</span>
-              </label>):(<label htmlFor="imageInput" style={styles.uploadButton}>
-              <span style={styles.buttonText}> Vide </span>
-              </label>)}
-              
-              <input
-                type="file"
-                accept="image/*"
-                id="imageInput"
-                onChange={handleImageChange}
-                style={{ display: 'none' }}
-              />
-             
-            </Text>
-          );
-        };
         
         const styles = {
           container: {
@@ -66,7 +87,33 @@ const ImageUploader = ()=>{
             color:'white',
             fontWeight: 'normal',
           },
+          text: {
+            color: 'dark',
+            fontSize: 20,
+            fontWeight: 'bold',
+            textAlign: 'center',
+            marginTop: 7,
 
+            
+          },
+            
+          soustitre: {
+
+              color: 'dark',
+              fontSize: 15,
+              marginTop: 1,
+              fontWeight: 'normal',
+          },
+
+          barreTexte: {
+            textAlign: 'center',
+            height: 40,
+            borderColor: 'gray',
+            borderWidth: 1,
+            width: Dimensions.get('window').width / 2,
+            alignSelf: 'left',
+            marginHorizontal: 10,
+          },
           uploadButton2: {
             cursor: 'pointer',
             padding: '5px',

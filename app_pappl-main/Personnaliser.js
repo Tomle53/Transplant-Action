@@ -6,64 +6,43 @@ import { View } from "react-native";
 import ImageUploader from './ImageUploader';
 
 
+
+
 const Personnaliser = ()=>{
-  const [nom, onChangeNom] = React.useState();
-       return(
-        <View>
+  const nombreDeDonneurs = 4;
+  const [informationsImages, setInformationsImages] = useState(Array(nombreDeDonneurs).fill({ nom: '', image: null }));
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-         
-        <Text style={styles.title}> Personnalisation des donneurs</Text>
-      
-        <Text>
-        <Text style={styles.text}> Donneur 1 : </Text>
-        <Text style={styles.soustitre}>Nom :
-        <TextInput 
-        style={styles.barreTexte }
-          onChangeText={onChangeNom}
-          value={nom}
-          /></Text> 
-        <Text style={styles.soustitre}> Image : <ImageUploader> </ImageUploader> </Text>
-        </Text> 
-        
-        <Text> 
-        <Text style={styles.text}> Donneur 2 : </Text>
-        <Text style={styles.soustitre}>Nom :
-        <TextInput 
-        style={styles.barreTexte }
-          onChangeText={onChangeNom}
-          value={nom}
-          /></Text> 
-        <Text style={styles.soustitre}> Image : <ImageUploader> </ImageUploader> </Text>
-        </Text> 
+  const handleImageChange = ({ index, nom, image }) => {
+    setInformationsImages((prevImages) => {
+      const updatedImages = [...prevImages];
+      updatedImages[index] = {nom, image };
+      return updatedImages;
+    });
+  };
 
-        <Text>
-        <Text style={styles.text}> Donneur 3 : </Text>
-        <Text style={styles.soustitre}>Nom :
-        <TextInput 
-        style={styles.barreTexte }
-          onChangeText={onChangeNom}
-          value={nom}
-          /></Text> 
-        <Text style={styles.soustitre}> Image : <ImageUploader> </ImageUploader> </Text>
-        </Text>
+  
 
-        <Text>
-        <Text style={styles.text}> Donneur 4 : </Text>
-        <Text style={styles.soustitre}>Nom :
-        <TextInput 
-        style={styles.barreTexte }
-          onChangeText={onChangeNom}
-          value={nom}
-          /></Text> 
-        <Text style={styles.soustitre}> Image : <ImageUploader> </ImageUploader> </Text>
-        </Text>
+  return (
+    <View>
+      <Text style={styles.title}> Personnalisation des donneurs</Text>
+      {Array.from({ length: nombreDeDonneurs }, (_, index) => (
+        <ImageUploader key={index.toString()} index={index} selectedIndex={selectedIndex} onImageChange={handleImageChange} />
+      ))}
+      {informationsImages.map((info, index) => (
+        <View key={index}>
 
+          <Text>{`Donneur ${index + 1} - Nom: ${info.nom}, Image: ${info.image}`}</Text>
+          <Text>{`Index sélectionné : ${selectedIndex}`}</Text>
         </View>
-        
-        
-        
-       )
-        }
+      ))}
+      
+    </View>
+  );
+};
+
+
+ 
       
         const styles = StyleSheet.create({
             container: {
