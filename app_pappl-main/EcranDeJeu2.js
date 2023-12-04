@@ -45,6 +45,7 @@ for(index=0;index<indexFauxDonneurs.length+1;index++){
 }*/
 
 const EcranDeJeu2 = ({ route,navigation }) => {
+  
   const difficulte = route.params.difficulte;
   const timer = global.time;
   const [isTimerStart, setIsTimerStart] = useState(true);

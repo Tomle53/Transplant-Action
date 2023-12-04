@@ -7,19 +7,57 @@ import ImageUploader from './ImageUploader';
 
 
 const Personnaliser = ()=>{
-    
+  const [nom, onChangeNom] = React.useState();
        return(
         <View>
+
+         
         <Text style={styles.title}> Personnalisation des donneurs</Text>
-        <Text style={styles.text}> Donneur 1 : 
-        <ImageUploader> </ImageUploader></Text>
-        <Text style={styles.text}> Donneur 2 : 
-        <ImageUploader></ImageUploader></Text>
-        <Text style={styles.text}> Donneur 3 : 
-        <ImageUploader></ImageUploader></Text>
-        <Text style={styles.text}> Donneur 4 : 
-        <ImageUploader></ImageUploader></Text>
+      
+        <Text>
+        <Text style={styles.text}> Donneur 1 : </Text>
+        <Text style={styles.soustitre}>Nom :
+        <TextInput 
+        style={styles.barreTexte }
+          onChangeText={onChangeNom}
+          value={nom}
+          /></Text> 
+        <Text style={styles.soustitre}> Image : <ImageUploader> </ImageUploader> </Text>
+        </Text> 
         
+        <Text> 
+        <Text style={styles.text}> Donneur 2 : </Text>
+        <Text style={styles.soustitre}>Nom :
+        <TextInput 
+        style={styles.barreTexte }
+          onChangeText={onChangeNom}
+          value={nom}
+          /></Text> 
+        <Text style={styles.soustitre}> Image : <ImageUploader> </ImageUploader> </Text>
+        </Text> 
+
+        <Text>
+        <Text style={styles.text}> Donneur 3 : </Text>
+        <Text style={styles.soustitre}>Nom :
+        <TextInput 
+        style={styles.barreTexte }
+          onChangeText={onChangeNom}
+          value={nom}
+          /></Text> 
+        <Text style={styles.soustitre}> Image : <ImageUploader> </ImageUploader> </Text>
+        </Text>
+
+        <Text>
+        <Text style={styles.text}> Donneur 4 : </Text>
+        <Text style={styles.soustitre}>Nom :
+        <TextInput 
+        style={styles.barreTexte }
+          onChangeText={onChangeNom}
+          value={nom}
+          /></Text> 
+        <Text style={styles.soustitre}> Image : <ImageUploader> </ImageUploader> </Text>
+        </Text>
+
         </View>
         
         
@@ -30,10 +68,11 @@ const Personnaliser = ()=>{
         const styles = StyleSheet.create({
             container: {
               flex: 1,
-              flexDirection: 'column',
-              textAlign: 'center',
-              justifyContent: 'start',
-              marginTop: 20,
+      flexDirection: 'column',
+      textAlign: 'center',
+      justifyContent: 'flex-start',
+      marginTop: 20,
+      backgroundColor: 'white',
             },
             buttonText: {
               fontSize: 20,
@@ -41,12 +80,13 @@ const Personnaliser = ()=>{
             },
             barreTexte: {
               textAlign: 'center',
-              height: 40,
+              height: 30,
               borderColor: 'gray',
               borderWidth: 1,
-              width: 300,
+              width: Dimensions.get('window').width /8,
+              marginRight: 30,
               alignSelf: 'center',
-              marginHorizontal: 10,
+              marginHorizontal: 5,
             },
             title: {
               fontSize: 50,
@@ -82,13 +122,30 @@ const Personnaliser = ()=>{
               opacity: 1,
               tintColor: 'black',
             },
+
             text: {
               color: 'dark',
               fontSize: 20,
               fontWeight: 'bold',
               textAlign: 'center',
+              marginTop: 7,
+
               
             },
+              
+            soustitre: {
+
+                color: 'dark',
+                fontSize: 15,
+                marginTop: 1,
+                fontWeight: 'normal',
+                
+                
+
+
+               
+            },
+
             buttonpressed: {
               textAlign: 'center',
               backgroundColor: '#148ce8',
