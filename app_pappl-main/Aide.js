@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
     instruction: {
       
-      fontSize: 10,
+      fontSize: Dimensions.get('window').height/40,
       textAlign: 'left',
     
       margin: 10,
