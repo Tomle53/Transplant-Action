@@ -26,6 +26,8 @@
     "react-native-stopwatch-timer": "^0.0.21",
     "react-native-web": "~0.18.9",
     "react-navigation": "^4.4.4",
+    "react-redux": "^9.0.4",
+    "redux": "^5.0.0",
     "save": "^2.9.0"
   },
   "devDependencies": {

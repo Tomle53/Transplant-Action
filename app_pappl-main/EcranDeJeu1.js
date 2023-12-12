@@ -11,6 +11,7 @@ let imgSrc = require('./pictures/docteur.png');
  */
 const EcranDeJeu1 = ({ route, navigation }) => {
     const difficulte=route.params.difficulte;
+    const informationsImages=route.params.informationsImages;
     const number = route.params.timer;
     const timer = number * 60000;
     const num = 3;
@@ -51,7 +52,7 @@ const EcranDeJeu1 = ({ route, navigation }) => {
         <Text style={styles.title} > Étape 1: </Text>
         <Text style={styles.instruction}>Trouver les informations sur le docteur Saha pour continuer </Text>
         <Image style={styles.image} source={imgSrc}/>
-        <Receveur difficulte={difficulte}/>
+        <Receveur difficulte={difficulte} informationsImages={informationsImages}/>
         <Text> </Text>
         </View>      
     );

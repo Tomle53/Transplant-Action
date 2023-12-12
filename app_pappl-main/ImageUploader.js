@@ -6,7 +6,7 @@ import { View } from "react-native";
 
 
 
-const ImageUploader = ({ index, selectedIndex, onImageChange }) => {
+const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages }) => {
   const [image, setImage] = useState(null);
   const [imageName, setImageName] = useState('');
   const [nom, onChangeNom] = useState('');
@@ -37,8 +37,11 @@ const ImageUploader = ({ index, selectedIndex, onImageChange }) => {
 
   return (
     <View>
-      <Text>
-        <Text style={styles.text}>{`Donneur ${index + 1}:`}</Text>
+     
+     <Text>
+      <Text style={styles.text}>{`Donneur ${index + 1} : `}</Text>
+      <Text style={styles.soustitre2}>{index+1==5  || index + 1 === 4 ? (` (difficulté normal)`) : (``)}</Text>
+      </Text>
         <Text style={styles.soustitre}>
           Nom :
           <TextInput style={styles.barreTexte} onChangeText={handleNomChange} value={nom} />
@@ -60,7 +63,9 @@ const ImageUploader = ({ index, selectedIndex, onImageChange }) => {
             <input type="file" accept="image/*" id={`imageInput-${index}`} onChange={handleImageChange} style={{ display: 'none' }} />
           </Text>
         </Text>
-      </Text>
+        
+      
+      
     </View>
   );
 };
@@ -91,23 +96,32 @@ const ImageUploader = ({ index, selectedIndex, onImageChange }) => {
             color: 'dark',
             fontSize: 20,
             fontWeight: 'bold',
-            textAlign: 'center',
-            marginTop: 7,
+
+            marginBottom : 10,
+            marginLeft : 20,
+
 
             
           },
             
           soustitre: {
+            marginLeft : 80,
+              color: 'dark',
+              fontSize: 15,
+              marginTop: 1,
+              fontWeight: 'normal',
 
+          },
+          soustitre2: {
+            
               color: 'dark',
               fontSize: 15,
               marginTop: 1,
               fontWeight: 'normal',
           },
-
           barreTexte: {
             textAlign: 'center',
-            height: 40,
+            height: 30,
             borderColor: 'gray',
             borderWidth: 1,
             width: Dimensions.get('window').width / 2,

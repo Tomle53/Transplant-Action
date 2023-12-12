@@ -12,9 +12,11 @@ const ParametragePartie = ({ navigation }) => {
   const { width } = useWindowDimensions();
 
   
-
+  const nombreDeDonneurs =  difficulte ? 5:4;
+  const nombreDeDonneursmax=6;
     const [number, onChangeNumber] = React.useState(30);
     const [difficulte,setDifficulte]= useState(true);
+    const [informationsImages, setInformationsImages] = useState(Array(nombreDeDonneursmax).fill({ nom: '', image: null, imageName: ''}));
     return(
         <View style={styles.container}>
         <Text style={[styles.title, Dimensions.get('window').width  > 600 ? { fontSize:Dimensions.get('window').width /15  } : { fontSize: Dimensions.get('window').width /10 }]} > Paramétrage de la partie </Text>
@@ -47,11 +49,18 @@ const ParametragePartie = ({ navigation }) => {
         <Text style={[styles.buttonText,Dimensions.get('window').width > 600 ? { fontSize:Dimensions.get('window').width /60  } : { fontSize: Dimensions.get('window').width /30 }]}> 
        Normal </Text> </Pressable>
      </Text>
+     <Text>{informationsImages.map((info, index) => (
+        <View key={index}>
+
+          <Text>{`Donneur ${index + 1} - Nom: ${info.nom}, ImageName: ${info.imageName}, Image: ${info.image} `}</Text>
+   
+        </View>
+      ))}</Text>
      <Pressable
               style={styles.buttonpressed2}
               title="Personnaliser les personnages"
               onPress={() =>
-                navigation.navigate('Personnaliser')
+                navigation.navigate('Personnaliser', { informationsImages, setInformationsImages, nombreDeDonneurs: nombreDeDonneurs})
               }
             >
               <Text style={[styles.buttonText,Dimensions.get('window').width>600 ? {fontSize:width/35} : {fontSize:width/20}]}>
@@ -62,12 +71,13 @@ const ParametragePartie = ({ navigation }) => {
               style={[ !isNaN(number) && number!="" ? styles.buttonpressed2 : styles.button2]}
               title="Lancer la partie"
               onPress={() => {if(!isNaN(number)){
-                navigation.navigate('EcranDeJeu1', {timer: number, difficulte : difficulte} )
+                navigation.navigate('EcranDeJeu1', {timer: number, difficulte : difficulte, informationsImages : informationsImages} )
               }}}
             >
               <Text style={[styles.buttonText,Dimensions.get('window').width>600 ? {fontSize:width/35} : {fontSize:width/20}]}>
                  Lancer la partie </Text>
           </Pressable>
+          
         </View>
     )
 }

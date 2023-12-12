@@ -48,6 +48,7 @@ const EcranDeJeu2 = ({ route,navigation }) => {
   
   const difficulte = route.params.difficulte;
   const timer = global.time;
+  const informationsImages=route.params.informationsImages;
   const [isTimerStart, setIsTimerStart] = useState(true);
   const [timerDuration, setTimerDuration] = useState(timer);
   const [resetTimer, setResetTimer] = useState(false);
@@ -77,6 +78,8 @@ const EcranDeJeu2 = ({ route,navigation }) => {
 }
   }
   }
+
+  
     changeAges.push(changeAge)
     const [ageOk,setAgeOk] = useState(false)
     agesOk.push(ageOk)
@@ -107,7 +110,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
     donneurCorrectAjoute = true;
   }
   else if(!donneurCorrectAjoute){
-  Donneurs.push(<Donneur key={index.toString()} nom = {donneursPotentiels[indexFauxDonneurs[index]][0]} 
+  Donneurs.push(<Donneur key={index.toString()} nom = {informationsImages[index].nom=='' ? donneursPotentiels[indexFauxDonneurs[index]][0] : informationsImages[index].nom} 
   age = {ages[index]} 
   bonAge = {donneursPotentiels[indexFauxDonneurs[index]][1]} 
   changeAge = {changeAges[index]} ageOk = {agesOk[index]} changeAgeOk = {changeAgesOk[index]} 
@@ -117,13 +120,13 @@ for(let index=0;index<nombreDeDonneurs;index++){
   compatibilite= {donneursPotentiels[indexFauxDonneurs[index]][3]}
 
 
-  correct = {false} resolu = {resolu} imageSource = {donneursPotentiels[indexFauxDonneurs[index]][4]}
+  correct = {false} resolu = {resolu} imageSource = {informationsImages[index].image==null ?  donneursPotentiels[indexFauxDonneurs[index]][4] : informationsImages[index].image}
   mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]} difficulte={difficulte}
   sequence = {donneursPotentiels[indexFauxDonneurs[index]][5]}
 
   />)
   }
-  else{Donneurs.push(<Donneur key={index.toString()} nom = {donneursPotentiels[indexFauxDonneurs[index-1]][0]} 
+  else{Donneurs.push(<Donneur key={index.toString()} nom = {informationsImages[index-1].nom=='' ? donneursPotentiels[indexFauxDonneurs[index-1]][0] : informationsImages[index-1].nom} 
   age = {ages[index]} 
   bonAge = {donneursPotentiels[indexFauxDonneurs[index-1]][1]} 
   changeAge = {changeAges[index]} ageOk = {agesOk[index]} changeAgeOk = {changeAgesOk[index]} 
@@ -132,7 +135,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
   changeGenre={changeGenres[index]} 
   compatibilite= {donneursPotentiels[indexFauxDonneurs[index-1]][3]}
 
-  correct = {false} resolu = {resolu} imageSource = {donneursPotentiels[indexFauxDonneurs[index-1]][4]}
+  correct = {false} resolu = {resolu} imageSource = {informationsImages[index-1].image==null ?  donneursPotentiels[indexFauxDonneurs[index-1]][4] : informationsImages[index-1].imag}
   mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]} difficulte={difficulte}
   sequence = {donneursPotentiels[indexFauxDonneurs[index-1]][5]}
   />)
@@ -165,7 +168,9 @@ for(let index=0;index<nombreDeDonneurs;index++){
               setIsTimerStart(true);
               setResetTimer(false);
             }}
-          /><Pressable style={!difficulte? styles.buttonAddTime : styles.buttonAddTimeCache} onPress={()=>{handleAddTime()}} disabled={difficulte}>
+          />
+
+          <Pressable style={!difficulte? styles.buttonAddTime : styles.buttonAddTimeCache} onPress={()=>{handleAddTime()}} disabled={difficulte}>
           <Text style={{color: 'white', fontSize:15}}>Ajouter 5 minutes</Text>
           </Pressable>
           </View>

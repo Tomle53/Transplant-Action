@@ -8,17 +8,21 @@ import ImageUploader from './ImageUploader';
 
 
 
-const Personnaliser = ()=>{
-  const nombreDeDonneurs = 4;
-  const [informationsImages, setInformationsImages] = useState(Array(nombreDeDonneurs).fill({ nom: '', image: null }));
+const Personnaliser = ({route})=>{
+  const nombreDeDonneursmax = 5;
+  const { informationsImages, setInformationsImages } = route.params;
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const updateInformationsImages = (newInformationsImages) => {
+    setInformationsImages(newInformationsImages);
+  };
 
-  const handleImageChange = ({ index, nom, image }) => {
-    setInformationsImages((prevImages) => {
+  const handleImageChange = ({ index, nom, image, imageName }) => {
+    updateInformationsImages((prevImages) => {
       const updatedImages = [...prevImages];
-      updatedImages[index] = {nom, image };
+      updatedImages[index] = {nom, image, imageName };
       return updatedImages;
     });
+
   };
 
   
@@ -26,15 +30,8 @@ const Personnaliser = ()=>{
   return (
     <View>
       <Text style={styles.title}> Personnalisation des donneurs</Text>
-      {Array.from({ length: nombreDeDonneurs }, (_, index) => (
-        <ImageUploader key={index.toString()} index={index} selectedIndex={selectedIndex} onImageChange={handleImageChange} />
-      ))}
-      {informationsImages.map((info, index) => (
-        <View key={index}>
-
-          <Text>{`Donneur ${index + 1} - Nom: ${info.nom}, Image: ${info.image}`}</Text>
-          <Text>{`Index sélectionné : ${selectedIndex}`}</Text>
-        </View>
+      {Array.from({ length: nombreDeDonneursmax }, (_, index) => (
+        <ImageUploader key={index.toString()} index={index} selectedIndex={selectedIndex} onImageChange={handleImageChange} informationsImages={informationsImages} />
       ))}
       
     </View>
@@ -74,6 +71,7 @@ const Personnaliser = ()=>{
               color: '#148ce8',
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
+              marginBottom: 30
           
             },
             parametre: {

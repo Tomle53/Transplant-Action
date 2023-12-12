@@ -12,7 +12,7 @@ let imgSrc = require('./pictures/docteur.png');
 const AgeDoc = 47;
 const seqProteine = 'MYHKL'
 
-const Receveur = ({difficulte}) => {
+const Receveur = ({difficulte, informationsImages}) => {
   const { width } = useWindowDimensions();
   const [ageOk, setAgeOk] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -62,7 +62,7 @@ const Receveur = ({difficulte}) => {
         style={buttonDisabled ? styles.button : styles.buttonpressed}
 
         onPress={() => {
-          if (ageOk && proteineOk && genre) { navigation.navigate('EcranDeJeu2', {difficulte : difficulte}); }
+          if (ageOk && proteineOk && genre) { navigation.navigate('EcranDeJeu2', {difficulte : difficulte, informationsImages: informationsImages}); }
         }}
         disabled={!ageOk || !proteineOk || !genre}
 
