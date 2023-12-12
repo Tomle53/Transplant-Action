@@ -7,9 +7,9 @@ import { View } from "react-native";
 
 
 const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages }) => {
-  const [image, setImage] = useState(null);
-  const [imageName, setImageName] = useState('');
-  const [nom, onChangeNom] = useState('');
+  const [image, setImage] = useState(informationsImages[index].image);
+  const [imageName, setImageName] = useState(informationsImages[index].imageName);
+  const [nom, onChangeNom] = useState(informationsImages[index].nom);
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -20,7 +20,7 @@ const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages
       reader.onload = (event) => {
         setImage(event.target.result);
         setImageName(selectedImage.name);
-        onImageChange({ index: selectedIndex !== null ? selectedIndex : index,nom,  image: event.target.result });
+        onImageChange({ index: selectedIndex !== null ? selectedIndex : index,nom,  image: event.target.result, imageName: selectedImage.name });
       };
 
       reader.readAsDataURL(selectedImage);
@@ -30,7 +30,7 @@ const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages
 
   const handleNomChange = (nouveauNom) => {
     onChangeNom(nouveauNom);
-    onImageChange({ index: selectedIndex !== null ? selectedIndex : index, nom: nouveauNom, image });
+    onImageChange({ index: selectedIndex !== null ? selectedIndex : index, nom: nouveauNom, image, imageName });
   };
 
 
@@ -50,11 +50,11 @@ const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages
           Image :
           <Text style={{ textAlign: 'left', margin: 10 }}>
             {image ? (
-              <View>
+              
                 <label htmlFor={`imageInput-${index}`} style={styles.uploadButton2}>
                   <span style={styles.buttonText2}>{imageName}</span>
                 </label>
-              </View>
+              
             ) : (
               <label htmlFor={`imageInput-${index}`} style={styles.uploadButton}>
                 <span style={styles.buttonText}> Vide </span>

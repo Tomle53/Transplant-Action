@@ -16,7 +16,7 @@ const ParametragePartie = ({ navigation }) => {
   const nombreDeDonneursmax=6;
     const [number, onChangeNumber] = React.useState(30);
     const [difficulte,setDifficulte]= useState(true);
-    const [informationsImages, setInformationsImages] = useState(Array(nombreDeDonneursmax).fill({ nom: '', image: null, imageName: ''}));
+    const [informationsImages, setInformationsImages] = useState(Array(nombreDeDonneursmax).fill({ nom: '',imageName: '', image: null }));
     return(
         <View style={styles.container}>
         <Text style={[styles.title, Dimensions.get('window').width  > 600 ? { fontSize:Dimensions.get('window').width /15  } : { fontSize: Dimensions.get('window').width /10 }]} > Paramétrage de la partie </Text>
