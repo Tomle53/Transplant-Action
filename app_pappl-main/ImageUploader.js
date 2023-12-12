@@ -10,6 +10,7 @@ const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages
   const [image, setImage] = useState(informationsImages[index].image);
   const [imageName, setImageName] = useState(informationsImages[index].imageName);
   const [nom, onChangeNom] = useState(informationsImages[index].nom);
+  const [effacer, setEffacer]= useState(false);
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -27,6 +28,10 @@ const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages
       
     }
   };
+if(effacer){
+  onImageChange({ index: selectedIndex !== null ? selectedIndex : index,nom,  image: image, imageName: imageName});
+setEffacer(false)
+}
 
   const handleNomChange = (nouveauNom) => {
     onChangeNom(nouveauNom);
@@ -45,6 +50,7 @@ const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages
         <Text style={styles.soustitre}>
           Nom :
           <TextInput style={styles.barreTexte} onChangeText={handleNomChange} value={nom} />
+         
         </Text>
         <Text style={styles.soustitre}>
           Image :
@@ -60,6 +66,15 @@ const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages
                 <span style={styles.buttonText}> Vide </span>
               </label>
             )}
+             <Pressable style={styles.uploadButton3}
+       title="Effacer" 
+       onPress={() => {
+        setImageName('');
+       setImage(null);
+      setEffacer(true);}
+       }>
+        <Text style={styles.buttonText3}> Effacer </Text>
+       </Pressable>
             <input type="file" accept="image/*" id={`imageInput-${index}`} onChange={handleImageChange} style={{ display: 'none' }} />
           </Text>
         </Text>
@@ -87,10 +102,25 @@ const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages
             marginTop: 20,
             display: 'inline-block',
           },
+          uploadButton3: {
+            cursor: 'pointer',
+            padding: '5px',
+            backgroundColor: '#CCCCCC',
+            marginLeft : 50,
+            borderRadius: 300,
+            marginTop: 20,
+
+          },
           buttonText: {
             fontSize: 15,
             color:'white',
             fontWeight: 'normal',
+          },
+          buttonText3: {
+            fontSize: 15,
+            color:'white',
+            fontWeight: 'normal',
+            textAlign: 'right'
           },
           text: {
             color: 'dark',
