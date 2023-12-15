@@ -64,7 +64,7 @@ setEffacer(false)
               
             ) : (
               <label htmlFor={`imageInput-${index}`} style={styles.uploadButton}>
-                <span style={styles.buttonText}> Vide </span>
+                <span style={styles.buttonText}> Choisir un fichier </span>
               </label>
             )}
              <Pressable style={styles.uploadButton3}
