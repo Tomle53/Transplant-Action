@@ -1,4 +1,4 @@
-# Transplant-Action groupe 15 
+# Transplant-Action
 
 This is an application made to go with the esacape game "Transplant'action" made by the INSERM and Nantes CHU.
 
