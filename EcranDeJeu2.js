@@ -110,7 +110,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
     donneurCorrectAjoute = true;
   }
   else if(!donneurCorrectAjoute){
-  Donneurs.push(<Donneur key={index.toString()} nom = {informationsImages[index].nom=='' ? donneursPotentiels[indexFauxDonneurs[index]][0] : informationsImages[index].nom} 
+  Donneurs.push(<Donneur key={index.toString()} nom = {informationsImages[indexFauxDonneurs[index]].nom=='' ? donneursPotentiels[indexFauxDonneurs[index]][0] : informationsImages[indexFauxDonneurs[index-1]].nom} 
   age = {ages[index]} 
   bonAge = {donneursPotentiels[indexFauxDonneurs[index]][1]} 
   changeAge = {changeAges[index]} ageOk = {agesOk[index]} changeAgeOk = {changeAgesOk[index]} 
@@ -120,13 +120,13 @@ for(let index=0;index<nombreDeDonneurs;index++){
   compatibilite= {donneursPotentiels[indexFauxDonneurs[index]][3]}
 
 
-  correct = {false} resolu = {resolu} imageSource = {informationsImages[index].image==null ?  donneursPotentiels[indexFauxDonneurs[index]][4] : informationsImages[index].image}
+  correct = {false} resolu = {resolu} imageSource = {informationsImages[indexFauxDonneurs[index]].image==null ?  donneursPotentiels[indexFauxDonneurs[index]][4] : informationsImages[indexFauxDonneurs[index-1]].image}
   mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]} difficulte={difficulte}
   sequence = {donneursPotentiels[indexFauxDonneurs[index]][5]}
 
   />)
   }
-  else{Donneurs.push(<Donneur key={index.toString()} nom = {informationsImages[index-1].nom=='' ? donneursPotentiels[indexFauxDonneurs[index-1]][0] : informationsImages[index-1].nom} 
+  else{Donneurs.push(<Donneur key={index.toString()} nom = {informationsImages[indexFauxDonneurs[index-1]].nom=='' ? donneursPotentiels[indexFauxDonneurs[index-1]][0] : informationsImages[indexFauxDonneurs[index-1]].nom} 
   age = {ages[index]} 
   bonAge = {donneursPotentiels[indexFauxDonneurs[index-1]][1]} 
   changeAge = {changeAges[index]} ageOk = {agesOk[index]} changeAgeOk = {changeAgesOk[index]} 
@@ -135,7 +135,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
   changeGenre={changeGenres[index]} 
   compatibilite= {donneursPotentiels[indexFauxDonneurs[index-1]][3]}
 
-  correct = {false} resolu = {resolu} imageSource = {informationsImages[index-1].image==null ?  donneursPotentiels[indexFauxDonneurs[index-1]][4] : informationsImages[index-1].imag}
+  correct = {false} resolu = {resolu} imageSource = {informationsImages[indexFauxDonneurs[index-1]].image==null ?  donneursPotentiels[indexFauxDonneurs[index-1]][4] : informationsImages[indexFauxDonneurs[index-1]].imag}
   mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]} difficulte={difficulte}
   sequence = {donneursPotentiels[indexFauxDonneurs[index-1]][5]}
   />)

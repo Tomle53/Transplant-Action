@@ -16,7 +16,7 @@ const ParametragePartie = ({ navigation }) => {
   const nombreDeDonneursmax=6;
     const [number, onChangeNumber] = React.useState(30);
     const [difficulte,setDifficulte]= useState(true);
-    const [informationsImages, setInformationsImages] = useState(Array(nombreDeDonneursmax).fill({ nom: '',imageName: '', image: null }));
+    const [informationsImages, setInformationsImages] = useState(Array(nombreDeDonneursmax).fill({ nom: '', image: null, imageName: ''}));
     return(
         <View style={styles.container}>
         <Text style={[styles.title, Dimensions.get('window').width  > 600 ? { fontSize:Dimensions.get('window').width /15  } : { fontSize: Dimensions.get('window').width /10 }]} > Paramétrage de la partie </Text>
@@ -49,7 +49,13 @@ const ParametragePartie = ({ navigation }) => {
         <Text style={[styles.buttonText,Dimensions.get('window').width > 600 ? { fontSize:Dimensions.get('window').width /60  } : { fontSize: Dimensions.get('window').width /30 }]}> 
        Normal </Text> </Pressable>
      </Text>
-     
+     <Text>{informationsImages.map((info, index) => (
+        <View key={index}>
+
+          <Text>{`Donneur ${index + 1} - Nom: ${info.nom}, ImageName: ${info.imageName}, Image: ${info.image} `}</Text>
+   
+        </View>
+      ))}</Text>
      <Pressable
               style={styles.buttonpressed2}
               title="Personnaliser les personnages"

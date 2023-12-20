@@ -11,6 +11,7 @@ const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages
   const [imageName, setImageName] = useState(informationsImages[index].imageName);
   const [nom, onChangeNom] = useState(informationsImages[index].nom);
   const [effacer, setEffacer]= useState(false);
+  const nomDonneurs=['Léon Patounec','Dr Emilia Caubert','Tomas Parker','Béatrice Tapalinga','Vlad Koscov'];
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -44,7 +45,7 @@ setEffacer(false)
     <View>
      
      <Text>
-      <Text style={styles.text}>{`Donneur ${index + 1} : `}</Text>
+      <Text style={styles.text}>{`Donneur ${index + 1} : ${nomDonneurs[index]}`}</Text>
       <Text style={styles.soustitre2}>{index+1==5  || index + 1 === 4 ? (` (difficulté normal)`) : (``)}</Text>
       </Text>
         <Text style={styles.soustitre}>
