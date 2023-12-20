@@ -46,7 +46,7 @@ setEffacer(false)
      
      <Text>
       <Text style={styles.text}>{`Donneur ${index + 1} : ${nomDonneurs[index]}`}</Text>
-      <Text style={styles.soustitre2}>{index+1==5  || index + 1 === 4 ? (` (difficulté normal)`) : (``)}</Text>
+      
       </Text>
         <Text style={styles.soustitre}>
           Nom :

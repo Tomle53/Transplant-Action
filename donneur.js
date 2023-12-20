@@ -14,7 +14,7 @@ const Donneur = ({nom, age , bonAge, imageSource, ageOk, changeAge, changeAgeOk,
     const navigation = useNavigation();
     const { width } = useWindowDimensions();
     const [inputValue, setInputValue] = useState("");
-    return <View style={[styles.container,Dimensions.get('window').width >600 ? {width:width / 4} :{width: Dimensions.get('window').width} ]}>   
+    return <View style={[styles.container,Dimensions.get('window').width >600 ? (difficulte ? {width:width /4} : {width:width /3}):{width: Dimensions.get('window').width} ]}>   
             
             <Text style={styles.nom}>{nom}</Text>
             <Text>
