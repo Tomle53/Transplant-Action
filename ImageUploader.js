@@ -23,6 +23,7 @@ const ImageUploader = ({ index, selectedIndex, onImageChange, informationsImages
         setImage(event.target.result);
         setImageName(selectedImage.name);
         onImageChange({ index: selectedIndex !== null ? selectedIndex : index,nom,  image: event.target.result, imageName: selectedImage.name });
+
       };
 
       reader.readAsDataURL(selectedImage);

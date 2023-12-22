@@ -110,7 +110,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
     donneurCorrectAjoute = true;
   }
   else if(!donneurCorrectAjoute){
-  Donneurs.push(<Donneur key={index.toString()} nom = {informationsImages[indexFauxDonneurs[index]].nom=='' ? donneursPotentiels[indexFauxDonneurs[index]][0] : informationsImages[indexFauxDonneurs[index-1]].nom} 
+  Donneurs.push(<Donneur key={index.toString()} nom = {informationsImages[indexFauxDonneurs[index]].nom=='' ? donneursPotentiels[indexFauxDonneurs[index]][0] : informationsImages[indexFauxDonneurs[index]].nom} 
   age = {ages[index]} 
   bonAge = {donneursPotentiels[indexFauxDonneurs[index]][1]} 
   changeAge = {changeAges[index]} ageOk = {agesOk[index]} changeAgeOk = {changeAgesOk[index]} 
@@ -120,7 +120,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
   compatibilite= {donneursPotentiels[indexFauxDonneurs[index]][3]}
 
 
-  correct = {false} resolu = {resolu} imageSource = {informationsImages[indexFauxDonneurs[index]].image==null ?  donneursPotentiels[indexFauxDonneurs[index]][4] : informationsImages[indexFauxDonneurs[index-1]].image}
+  correct = {false} resolu = {resolu} imageSource = {informationsImages[index].image==null ?  donneursPotentiels[indexFauxDonneurs[index]][4] : informationsImages[indexFauxDonneurs[index]].image}
   mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]} difficulte={difficulte}
   sequence = {donneursPotentiels[indexFauxDonneurs[index]][5]}
 
@@ -135,7 +135,8 @@ for(let index=0;index<nombreDeDonneurs;index++){
   changeGenre={changeGenres[index]} 
   compatibilite= {donneursPotentiels[indexFauxDonneurs[index-1]][3]}
 
-  correct = {false} resolu = {resolu} imageSource = {informationsImages[indexFauxDonneurs[index-1]].image==null ?  donneursPotentiels[indexFauxDonneurs[index-1]][4] : informationsImages[indexFauxDonneurs[index-1]].imag}
+  correct = {false} resolu = {resolu} imageSource = {informationsImages[indexFauxDonneurs[index-1]].image==null ?  donneursPotentiels[indexFauxDonneurs[index-1]][4] : informationsImages[indexFauxDonneurs[index-1]].image}
+
   mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]} difficulte={difficulte}
   sequence = {donneursPotentiels[indexFauxDonneurs[index-1]][5]}
   />)
@@ -145,6 +146,9 @@ for(let index=0;index<nombreDeDonneurs;index++){
 
 
         <View style={styles.container}>
+           {indexFauxDonneurs.map((index, idx) => (
+        <Text key={idx.toString()} style={styles.indexText}>{index}</Text>
+      ))}
           <View style={styles.timeContainer}>
          <Timer 
             totalDuration={timerDuration}

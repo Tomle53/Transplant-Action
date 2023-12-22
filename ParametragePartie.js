@@ -60,7 +60,7 @@ const ParametragePartie = ({ navigation }) => {
               <Text style={[styles.buttonText,Dimensions.get('window').width>600 ? {fontSize:width/35} : {fontSize:width/20}]}>
                  Personnaliser des personnages </Text>
           </Pressable>
-
+          
           <Pressable
               style={[ !isNaN(number) && number!="" ? styles.buttonpressed2 : styles.button2]}
               title="Lancer la partie"
@@ -71,7 +71,13 @@ const ParametragePartie = ({ navigation }) => {
               <Text style={[styles.buttonText,Dimensions.get('window').width>600 ? {fontSize:width/35} : {fontSize:width/20}]}>
                  Lancer la partie </Text>
           </Pressable>
-          
+          <Text>{informationsImages.map((info, index) => (
+        <View key={index}>
+
+          <Text>{`Donneur ${index + 1} - Nom: ${info.nom}, ImageName: ${info.imageName}, Image: ${info.image} `}</Text>
+   
+        </View>
+      ))}</Text>
         </View>
     )
 }
