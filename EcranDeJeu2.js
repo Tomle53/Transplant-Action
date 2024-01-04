@@ -120,7 +120,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
   compatibilite= {donneursPotentiels[indexFauxDonneurs[index]][3]}
 
 
-  correct = {false} resolu = {resolu} imageSource = {informationsImages[index].image==null ?  donneursPotentiels[indexFauxDonneurs[index]][4] : informationsImages[indexFauxDonneurs[index]].image}
+  correct = {false} resolu = {resolu} imageSource = {informationsImages[indexFauxDonneurs[index]].image==null ?  donneursPotentiels[indexFauxDonneurs[index]][4] : informationsImages[indexFauxDonneurs[index]].image}
   mismatchOk = {mismatchesOk[index]} changeMismatchOk = {changeMismatchesOk[index]} difficulte={difficulte}
   sequence = {donneursPotentiels[indexFauxDonneurs[index]][5]}
 
@@ -143,12 +143,12 @@ for(let index=0;index<nombreDeDonneurs;index++){
 }}  
  
   return(
-
+    
+   
 
         <View style={styles.container}>
-           {indexFauxDonneurs.map((index, idx) => (
-        <Text key={idx.toString()} style={styles.indexText}>{index}</Text>
-      ))}
+       
+      
           <View style={styles.timeContainer}>
          <Timer 
             totalDuration={timerDuration}
@@ -184,6 +184,7 @@ for(let index=0;index<nombreDeDonneurs;index++){
         <Text>
         {Donneurs}
         </Text>
+        
         </View>
     )
 }
